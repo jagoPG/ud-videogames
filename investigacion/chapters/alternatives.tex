@@ -1,0 +1,21 @@
+\chapter{Alternatives}
+Aunque ya he mencionado varias alternativas a Vulkan, voy a mencionar algunos de los kit de desarrollo que se emplean
+en diferentes sistemas y sus particularidades.
+
+\section{Metal}
+Es una \gls{api} que provee un acceso de alto rendimiento y bajo nivela la \gls{gpu}, permitiendo maximizar los
+gráficos y el potencial de computación de las aplicaciones en iOS, macOS y tvOS. Posee una \gls{api} simplificada,
+shaders precompilados, y soporte multihilos. Se dirige sobre todo a los desarrolladores que quieren llevar al límite
+las tarjetas gráficas integradas en los dispositivos móviles de Apple.
+
+Fue liberada en el año 2015 como una alternativa a OpenGL, buscando permitir un acceso más directo al hardware del
+dispositivo - un mismo objectivo que Vulkan. Con ello se quiere reducir el consumo de recursos y los tiempos de
+acceso al \emph{metal}. Entre algunas de las característica que se añaden, es una mayor sincronización entre la
+\gls{gpu} y la \gls{cpu} para que entre los dos dispositivos tengan que intercambiarse menor información. Esto se basa
+en la premisa de que cada vez que es necesario que la tarjeta gráfica dibuje algo, la \gls{cpu} tiene que mandarlo
+explicitamente. Mediante la compartición de recursos, la gráfica puede acceder directamente a los datos que sean
+necesarios sin requerir que el procesador se los tenga que mandar.
+
+\section{OpenGL}
+
+\section{DirectX}

@@ -1,0 +1,52 @@
+\chapter{A quick look}
+Si este artículo le ha llamado la atención, voy a proponer una manera de echarle un vistazo más de cerca al kit de
+desarrollo de Vulkan. Para ello propongo el repositorio de GitHub \href{https://github.com/LunarG/VulkanSamples}{LunarG/VulkanSamples}
+donde se pueden encontrar varios ejemplos ejecutables con este motor.
+
+En primer lugar hay que preparar las herramientas necesarias para poder desarrollar. En primer lugar hay que asegurarse
+que la tarjeta gráfica soporta Vulkan, en la tabla \ref{tab:vulkan_drivers} se puede comprobar si su modelo de tarjeta
+gráfica tiene drivers que den soporte a Vulkan.
+
+La preparación del entorno de desarrollo es diferente en Windows y GNU/Linux, pero en general los ingredientes a
+tener listos son:
+\begin{enumerate}
+    \item CMake: compilador de C/C++.
+    \item Python 3.
+    \item Git
+    \iten Glslang: necesario para compilar GLSL a SPIRV.
+\end{enumerate}
+
+En Windows faltaría instalar un \gls{ide}, que en este entorno podría ser Visual Studio por excelencia, y descargar
+el \gls{sdk} de Vulkan de la página web de \emph{LunarG}. Al crear un proyecto nuevo en C++ es necesario indicar la ruta
+donde está situado el kit de desarrollo, y añadir a las dependencias las librerías
+\emph{vulkan-1.lib} y \emph{glfw3.lib}.
+
+Por otra parte en GNU\/Linux, hay que descargarse el \gls{sdk} de Vulkan de la página web de \emph{LunarG} e instalarlo
+mediante el ejecutable que trae en el paquete. Es necesario instalar una serie de librerías además de las dependencias
+indicadas anteriormente:
+
+\begin{enumerate}
+    \item libxcb1-dev: librería XCB, se emplea para comunicarse con el sistema \emph{X-Window}.
+    \item xorg-dev: ficheros de desarrollo de Xorg.
+    \item libglm-dev: librería GLM, se emplea para realizar operaciones de algebra lineal.
+\end{enumerate}
+
+Una vez realizadas las instalaciones, hay que proceder a clonar el repositorio donde se situa el ejemplo. Cuando se
+haya descargado el proyecto, hay que ejecutar el fichero \emph{update\_external\_sources} el cual descarga y compila
+las dependencias \emph{glslang} y \emph{spriv-tools} que requiere este proyecto. Finalmente solo hay que compilar
+y ejecutar el proyecto, tal y como se indica en el fichero \emph{README.md} que se puede encontrar en el proyecto.
+
+\begin{table*}[t]
+  \centering
+  \begin{tabular}{p{0.25\linewidth}p{0.25\linewidth}p{0.25\linewidth}}
+    \toprule
+    Tarjeta gráfica & Driver Windows    & Driver GNU/Linux \\
+    \midrule
+    NVIDIA          & 368.69+                   & 367.27+ \\
+    AMD             & Crimson Edition 16.3+     & Crimson Edition 16.3+ \\
+    Intel           & 15.40.20.4404+            & Mesa 12.0+ \\
+    \bottomrule
+  \end{tabular}
+  \caption{Drivers de Vulkan}
+  \label{tab:vulkan_drivers}
+\end{table*}

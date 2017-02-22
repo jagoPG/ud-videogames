@@ -1,0 +1,39 @@
+\documentclass[a4paper,twocolumn]{report}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{glossaries}
+\usepackage{rotating}
+\usepackage{multirow}
+\usepackage{placeins}
+\usepackage{hyperref}
+\usepackage{makeidx}
+\RequirePackage{graphicx}
+\RequirePackage{booktabs}
+
+\graphicspath{{images/}, {images/screenshots/}}
+\DeclareGraphicsExtensions{.png, .jpg, .jpeg, .pdf}
+\makeglossaries
+\makeindex
+
+\begin{document}
+\title{Investigation about the graphical engine Vulkan API among other available technologies}
+\author{Jagoba Pérez}
+\date{February, 2017}
+\maketitle
+\printindex
+
+\begin{abstract}
+\input{./chapters/motivation}
+\end{abstract}
+
+\input{./chapters/glossaries}
+\input{./chapters/history}
+\input{./chapters/features}
+\input{./chapters/benchmark}
+\input{./chapters/installation}
+\input{./chapters/games}
+\input{./chapters/alternatives}
+\printglossary
+
+\end{document}
