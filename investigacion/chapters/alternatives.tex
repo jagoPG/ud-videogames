@@ -17,5 +17,35 @@ explicitamente. Mediante la compartición de recursos, la gráfica puede acceder
 necesarios sin requerir que el procesador se los tenga que mandar.
 
 \section{OpenGL}
+Especificación de estándar que define una \gls{api} multiplataforma y multilenguaje. El lanzamiento inicial fue
+realizado en 1992 como una solución a los problemas gráficos que había desde los años 80, cuando se tenían que
+subcontratar programadores para escribir drivers específicos para cada tipo de hardware.
+
+Durante mediados de los años noventa, se intentó unificar las tecnologías Direct3D de Microsoft y OpenGL de manera
+que las librerías gráficas creasen un nuevo estándar para la industria. Por falta de financiación y de apoyos este
+proyecto fracasó a los pocos años de ponerse en marcha.
+
+Su uso es libre y es un buen comienzo para los programadores que quieren iniciarse en el mundo de las librerías
+gráficas. Actualmente no tiene una gran relevancia en los entornos de escritorio, donde pocas compañías usan este
+estándar como primera opción para desarrollar. Es muy usado para la creación de motores gráficos, simuladores y
+aplicaciones dentro de los dispostivos móviles.
 
 \section{DirectX}
+Es una colección de \gls{api} desarrolladas para facilitar las tareas relacionadas con multimedia, en particular la
+programación de juegos y vídeos. Consta de diferentes \gls{api} para dibujar en 2D, 3D, procesamiento de dispositivos
+de entrada, comunicaciones por red, reproducción y grabación de audio...
+
+Tan solo está disponible para plataformas de Microsoft, como Windows o Xbox. Aunque se está desarrollando una
+implementación de código abierto para sistemas Unix, este proyecto se llama WineHQ.
+
+El lanzamiento inicial se realizó a finales de 1995. Antes de eso los juegos eran ejecutados directamente bajo DOS,
+donde no se empleaba ninguna \gls{api} específica de desarrollo multimedia. Durante estos años el mercado demandaba
+cada vez más aplicaciones multimedia, y no existía una solución nativa para este tipo de necesidades. La primera
+versión de DirectX se integró en Windows 95, en sustitución de \gls{dci} y WinG \gls{api}s para Windows 3.1.
+
+Direct3D está enforcado prácticamente a los juegos, durante años a ido ampliando con nuevas características y
+optimizaciones esta especificación. Cuando pusieron a la venta las consolas Xbox realizaron una \gls{api} específica
+para consolas. De la misma forma, DirectX está presente en su sistema móvil Windows phone. Microsoft aún da soporte a
+OpenGL dentro de sus sistemas de escritorio, esto se debe a que aplicaciones como CAD lo emplean. Para aprovechar
+las características de OpenGL, Microsoft ha creado un soporte intermedio entre DirectX y OpenGL para aprovechar lo mejor
+de ambos mundos, ofreciendo a los desarrolladores diferentes opciones a la hora de implementar sus soluciones.
