@@ -1,51 +1,53 @@
 \chapter{Alternatives}
-Aunque ya he mencionado varias alternativas a Vulkan, voy a mencionar algunos de los kit de desarrollo que se emplean
-en diferentes sistemas y sus particularidades.
+Even though I mentioned that there are several alternatives to Vulkan, I propose an overlook of some development
+kits that are widely used by the industry on different systems.
 
 \section{Metal}
-Es una \gls{api} que provee un acceso de alto rendimiento y bajo nivela la \gls{gpu}, permitiendo maximizar los
-gráficos y el potencial de computación de las aplicaciones en iOS, macOS y tvOS. Posee una \gls{api} simplificada,
-shaders precompilados, y soporte multihilos. Se dirige sobre todo a los desarrolladores que quieren llevar al límite
-las tarjetas gráficas integradas en los dispositivos móviles de Apple.
+It is an \gls{api} that provides a high performance access to the \gls{gpu}. Allows a low level access to the hardware,
+which maximizes the graphical quality and the computation power for applications runnng under iOS, maxOS and tvOS. Metal
+owns a simplified \gls{api}, precompiled shaders and multithread support. It is focused for developers that want push
+to the limit the integrated graphic cards in the Apple mobile devices.
 
-Fue liberada en el año 2015 como una alternativa a OpenGL, buscando permitir un acceso más directo al hardware del
-dispositivo - un mismo objectivo que Vulkan. Con ello se quiere reducir el consumo de recursos y los tiempos de
-acceso al \emph{metal}. Entre algunas de las característica que se añaden, es una mayor sincronización entre la
-\gls{gpu} y la \gls{cpu} para que entre los dos dispositivos tengan que intercambiarse menor información. Esto se basa
-en la premisa de que cada vez que es necesario que la tarjeta gráfica dibuje algo, la \gls{cpu} tiene que mandarlo
-explicitamente. Mediante la compartición de recursos, la gráfica puede acceder directamente a los datos que sean
-necesarios sin requerir que el procesador se los tenga que mandar.
+Released on 2015 as an alternative to OpenGL. Seeks a more direct access to the hardware of the devices - the same
+objective as Vulkan. Being closer to the \emph{metal} of the machine the resource consumption and access is reduced.
+Some of the new features includes a better synchronization between the \gls{gpu} and the \gls{cpu} for reducing the
+amount of data the \gls{cpu} has to provide to the \gls{gpu}: the logic behind is that the each time the graphic card
+needs to draw a scene, the \gls{cpu} has to send the commands explicitly. By means of the resource sharing, the graphic
+card can access to the data with no need of intermediary.
 
 \section{OpenGL}
-Especificación de estándar que define una \gls{api} multiplataforma y multilenguaje. El lanzamiento inicial fue
-realizado en 1992 como una solución a los problemas gráficos que había desde los años 80, cuando se tenían que
-subcontratar programadores para escribir drivers específicos para cada tipo de hardware.
+Standard specification that defines a multilanguage and multiplatfrom \gls{api}. The initial release was performed
+in 1992. Introduced as a solution to the graphical problems existing at early 80s: companies had to outsource
+programmers for writing specific drivers for each kind of hardware. Many times these kind of solutions were not the
+most optimal, without considering the financial implications.
 
-Durante mediados de los años noventa, se intentó unificar las tecnologías Direct3D de Microsoft y OpenGL de manera
-que las librerías gráficas creasen un nuevo estándar para la industria. Por falta de financiación y de apoyos este
-proyecto fracasó a los pocos años de ponerse en marcha.
+During mid-90s, the multimedia industry tried to unify two most relevant technologies: Microsoft's Direct3D and
+OpenGL. The objective was to create an industry graphical libraries standard. Because of a lack of funding and
+supporting the project failed two years after the proposal.
 
-Su uso es libre y es un buen comienzo para los programadores que quieren iniciarse en el mundo de las librerías
-gráficas. Actualmente no tiene una gran relevancia en los entornos de escritorio, donde pocas compañías usan este
-estándar como primera opción para desarrollar. Es muy usado para la creación de motores gráficos, simuladores y
-aplicaciones dentro de los dispostivos móviles.
+OpenGL is available to anyone, but it is not Open Source since the source code is not available. This \gls{api} is
+an open specification that describes the interface the programmer uses and expected behavior. The implementation
+that is Open Source is called \emph{Mesa3D}. It is a good start point for the programmers that want to introduce
+themselves to the graphical libraries world. Nowadays OpenGL does not have a huge relevance in desktop environments,
+a few companies uses this standard as a first option for developing. This specification is very used for the creation
+of graphical engines, simulators and mobile devices applications.
 
 \section{DirectX}
-Es una colección de \gls{api} desarrolladas para facilitar las tareas relacionadas con multimedia, en particular la
-programación de juegos y vídeos. Consta de diferentes \gls{api} para dibujar en 2D, 3D, procesamiento de dispositivos
-de entrada, comunicaciones por red, reproducción y grabación de audio...
+Made up by a collection of \gls{api}s developed for ease the task related with multimedia, videos and - above all -
+videogames. Consists of different libraries for drawing in 2D, 3D, input device processing, network communications,
+audio playing and recording...
 
-Tan solo está disponible para plataformas de Microsoft, como Windows o Xbox. Aunque se está desarrollando una
-implementación de código abierto para sistemas Unix, este proyecto se llama WineHQ.
+It is only available in Microsoft's platforms, such as Windows or Xbox. However, it is being developed an
+Open Source implementation for Unix systems - this project is called WineHQ.
 
-El lanzamiento inicial se realizó a finales de 1995. Antes de eso los juegos eran ejecutados directamente bajo DOS,
-donde no se empleaba ninguna \gls{api} específica de desarrollo multimedia. Durante estos años el mercado demandaba
-cada vez más aplicaciones multimedia, y no existía una solución nativa para este tipo de necesidades. La primera
-versión de DirectX se integró en Windows 95, en sustitución de \gls{dci} y WinG \gls{api}s para Windows 3.1.
+The initial release was at ending 1995s. In the past, games were executed directly under DOS system, where no
+specific \gls{api} was employed for multimedia development. During those years, the market demand of multimedia
+applications was going greater and greater, and there is no native solutions. The first version of DirectX - also
+called Direct3D - was integrated into Windows 95, as a substitute of \gls{dci} and WinG Windows 3.1 \gls{api}.
 
-Direct3D está enforcado prácticamente a los juegos, durante años a ido ampliando con nuevas características y
-optimizaciones esta especificación. Cuando pusieron a la venta las consolas Xbox realizaron una \gls{api} específica
-para consolas. De la misma forma, DirectX está presente en su sistema móvil Windows phone. Microsoft aún da soporte a
-OpenGL dentro de sus sistemas de escritorio, esto se debe a que aplicaciones como CAD lo emplean. Para aprovechar
-las características de OpenGL, Microsoft ha creado un soporte intermedio entre DirectX y OpenGL para aprovechar lo mejor
-de ambos mundos, ofreciendo a los desarrolladores diferentes opciones a la hora de implementar sus soluciones.
+Direct3D is focused in game development. During many years the \gls{api} implementation has been increased, and many
+optimizations have been included. When the Xbox consoles were put on sale a specific \gls{api} was created for the
+consoles - same happened with the mobile system Windows Phone. Microsoft still supports to OpenGL inside their desktop
+systems. This is because applications like CAD and simulators consumes that \gls{api}. For taking advantage of
+OpenGL features, Microsoft has created a half-support between DirectX and OpenGL. They offer to developers different
+choices upon implementing their solutions.
