@@ -1,1 +1,30 @@
 \chapter{Benchmark}
+Dado que Vulkan tiende a ser el futuro reemplazo de OpenGL es necesario comparar si Vulkan ofrece una respuesta, como
+mínimo, equivalente a OpenGL. Para ello he realizado un benchmarking en dos juegos diferentes, una vez con cada
+tecnología. He ejecutado las mimas escenas para evitar que una de las \gls{api} tengan que soportar menor carga
+que la otra.
+
+Las especificaciones del ordenador con el que he hecho las pruebas son las siguientes: procesador Intel Core i7-4790,
+equipado con 16,0 GB DD3 de RAM a 1600 Mhz. y una tarjeta gráfica AMD Radeon R9 380 Series. He actualizado los drivers
+de AMD a la última versión para disfrutar de las últimas mejoras que se han realizado.
+
+Se ha empleado el software \emph{PresentMon64} para realizar las mediciones, el cual está libremente disponible en
+el repositorio de GitHub \href{https://github.com/GameTechDev/PresentMon}{GameTechDev/PresentMon}. Con esta aplicación
+se puede medir el tiempo que tarda en pintar la pantalla, tiempo que tarda en renderizar cada frame, tiempo de
+sicronización...
+
+\begin{table*}[t]
+  \centering
+  \begin{tabular}{p{0.15\linewidth}p{0.15\linewidth}p{0.15\linewidth}p{0.15\linewidth}p{0.15\linewidth}p{0.15\linewidth}}
+    \toprule
+    Juego & \gls{api}    & Media & Máximo & Mínimo & Desviación típica \\
+    \midrule
+    Doom 2016   & OpenGL  & 149 & 184 & 7   & 11.169 \\
+    Doom 2016   & Vulkan  & 85  & 194 & 36  & 9.786 \\
+    Dota 2      & OpenGL  & 132 & 145 & 85  & 10.84 \\
+    Dota 2      & Vulkan  & 129 & 200 & 5   & 34.073 \\
+    \bottomrule
+  \end{tabular}
+  \caption{Resultados del benchmarking. Se miden \gls{fps}.}
+  \label{tab:benchmarking_results}
+\end{table*}
