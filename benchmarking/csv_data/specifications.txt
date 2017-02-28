@@ -1,0 +1,3 @@
+Intel Core i7-4790
+RAM: 16,0 GB DD3 3800Mhz
+AMD Radeon R9 380 Series
