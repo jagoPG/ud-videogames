@@ -1,66 +1,75 @@
 \chapter{Features}
-Uno de los mayores desafios de Vulkan es ofrecer un alto rendimiento del hardware, con el menor consumo y calentamiento
-que sea posible. Actualmente los dispositivos móviles tienen la posiblidad de ejecutar juegos con una gran calidad
-gráfica. Uno de los métodos que se emplea es un menor uso de la \gls{cpu}, delegando menos tareas a esta y dando a la
-\gls{gpu} una mayor responsabilidad sobre la ejecución: uso de lotes de tareas para ejecutar las tareas en la
-\gls{gpu}, y empleo exclusivo de la \gls{cpu} para realizar rendering y computación.
+One of the greatest challenges of Vulkan is to offer a high hardware performance, with the lowest consumption possible
+and reducing the overhead. Nowadays, mobile devices have the chance of running games with a great graphical quality.
+One method that is employed is to reduce the use of the \gls{cpu}. This reduction is performed by a reduction in the
+number of delegated tasks, instead the responsibility of the \gls{gpu} is increased: use of batch tasks in the
+\gls{gpu}, exclusive use of the cpu for rendering and computation.
 
-El llegar a todos los dispositivos es otro de los objetivos centrales. Vulkan está disponible en Windows 7, Windows 8,
-Windows 10, Tizen, GNU/Linux y Android. El kit de desarrollo está disponible tanto para sistemas de escritorio Windows
-como para GNU/Linux. En Mac OS se está desarrollando una solución por parte de terceros para conseguir ejecutar
-aplicaciones Vulkan. The Brenwill Workshop es una desarrolladora especializada en software gráfico que se ha propuesto
-crear un wrapper entre las \gls{api} OpenGL y Metal para conseguir el soporte de Vulkan en MacOS e iOS. La solución
-se llama MoltenVK, y es parte de un framework para desarrollo gráfico.
+Reaching to all devices is other of the main objectives. Vulkan LunarG implementation is available from Windows 7 to
+Windows 10, Tizen, GNU\/Linux and Android. The \gls{sdk} is can be installed in both Windows and GNU\/Linux desktop
+environments. In MacOS is being developed by third parties for achieving the execution of Vulkan applications. \emph{The
+Brenwill Workshop} is a development company specialized on graphics software. They have proposed to create a middleware
+between the OpenGL and Metal \gls{api} implementations for getting the support of Vulkan on MacOS and iOS. The solution
+is called Molten, and it is part of an available graphic development framework.
 
-Vulkan implementa varias mejoras a nivel técnico las cuales le dan un buen motivo para ser el sucesor de OpenGL:
+Vulkan implements several improvements at technical level, which are a good reason for being the best successor of
+OpenGL:
+\begin{itemize}
+    \item Native muticore \gls{cpu}s scaling support.
+    \item Use of intermediate binary format called SPIR-V: Vulkan generates its own code for generating shaders, so
+    that the drivers do not require the development of a compiler for being able to render them. As the shaders are
+    compiled, a higher range of shaders can be used per scene. The driver just is in charge of optimize and generate
+    the final compiled code.
+    \item Unified management of computing kernels and graphical shaders: both \gls{api} are mixed that, until now, were
+    separated.
+    \item Oriented to objects, there is no global state.
+    \item States are not tied into a context, they are cached in a buffer.
+    \item Multithreading support.
+    \item More control over memory and synchronization.
+\end{itemize}
+
+There are features that have been proposed, but will be implemented in the future. For instance, providing support to
+multiple \gls{gpu}s of different model. The need of using \gls{sli} for being able to use several graphical cards at
+the same time.
+
+On the figure \ref{fig:comparison_opengl_vulkan} the existing differences between the two \gls{api} can be appreciated
+more graphically. As you may notice among the features of Vulkan, a closest access to the hardware from the applications
+has been attempted. Thanks to this, the need of a huge error and memory management is removed. Only a intermediate
+language is employed for using shaders (SPIR-V), and the \gls{api} is the same for developing on both mobile
+applications and desktop applications.
+
+Knowing all these information could be concluded that Vulkan increases the work load that the developers already have.
+However, things are not as they appear. Vulkan can be applied at three different levels:
+
 \begin{enumerate}
-    \item Escalado en \gls{cpu}s multicore de forma nativa.
-    \item Uso de binarios intermedios SPIR-V: Vulkan genera su propio código para shaders, de forma que los drivers no
-    requieren del desarrollo de un propio compilador para poder renderizarlas. Al poder estar precompiladas, se puede
-    emplear un mayor rango de shaders por escena. El driver tan solo se encarga de realizar optimizaciones y la
-    generación de código final.
-    \item Gestión unificada de kernels de cómputo y shaders gráficos: se juntan las dos API que hasta ahora estaban
-    separadas.
-    \item Orientado a objetos, no hay un estado global.
-    \item Los estados no se encuentran atados a un contexto, se cachean en un buffer.
-    \item Se puede emplear multithreading.
-    \item Control sobre la memoria y la sincronización.
+    \item Use directly all these features for having a full control over the engine.
+    \item Use and share libraries and layers for accelerating the development process.
+    \item Use already existing and optimized engines over the Vukan \gls{api}.
 \end{enumerate}
 
-Hay características que aún estan propuestas para su implantación, como por ejemplo el soporte de múltiples \gls{gpu}s
-a la vez de diferente modelo. Se elimina la necesidad de SLI y Crossfire para poder emplear varias tarjetas gráficas al
-mismo tiempo.
+The first option is the less frequent since developers have to start from scratch. But it could be a good option for
+making good benchmarks. Khronos expects the second option to be a rich area of innovation among the community and
+companies. As the libraries can be published as little bundles, they could be shared as OpenSource that require
+improvements and updates. The last option could be the most tentative considering that the hard work has already
+done by industry giants, developers have only to pay some royalties to the propietaries of the engine; for instance
+Unity Engine.
 
-En la imagen \ref{fig:comparison_opengl_vulkan} se puede apreciar más gráficamente las diferencias que hay entre las
-dos \gls{api}. Como se ha podido apreciar entre las características de Vulkan, se ha intentado que las aplicaciones
-tengan un acceso más cercano al hardware. Gracias a esto se elimina la necesidad de una gran gestión de errores
-y de memoria. Tan solo se emplea un lenguaje intermedio para los shaders (SPIR-V), y la \gls{api} es la misma tanto
-para desarrollar para dispostivos móviles como para aplicaciones de escritorio.
-
-Con toda esta información podría parecer que Vulkan aumenta la carga de trabajo que tienen los desarrolladores, aunque
-las cosas no son como parecen. Se puede implementar Vulkan a tres niveles diferentes: (1) usar directamente todas las
-prestaciones para tener control total sobre el motor, (2) emplear librerías y capas para acelerar el desarrollo, o
-(3) emplear motores optimizados sobre la \gls{api} Vulkan. La primera opción es la que menor uso va a tener, pero puede
-ser una buena opción para realizar bencharmarks. Khronos espera que la segunda opción sea una rica área de innovación
-ya que las librerías pueden ser OpenSource que requieran de mejoras y actualizaciones. La última opción puede ser la
-más tentativa, ya que el trabajo más duro ya ha sido realizado por los gigantes de la industria.
-
-En la imagen \ref{fig:vulkan_ecosystem} puede apreciarse como se distribuye la arquitectura de Vulkan. Como se ha
-explicado, Vulkan se situa en un nivel inferior al motor del juego. Se sitúa justo encima del hardware, por lo que
-se puede explotar muchas de sus características directamente. Se habilita una interfaz para poder implementar en el
-futuro otras herramientas y frameworks para usar conjuntamente con Vulkan.
+On the figure \ref{fig:vulkan_ecosystem} can be appreciated how the Vulkan architecture is distributed. As explained,
+the Vulkan implementation is placed in a lower level that the game engine. It is located over the hardware so that
+many of its features can be exploded directly. An interface is set up for implementing other tools and frameworks
+joined together with Vulkan in the future.
 
 \begin{figure}[t]
 	\begin{center}
 		\includegraphics[scale=0.3]{comparison-opengl_and_vulkan}
-		\caption{Comparativa entre características de OpenGL y Vulkan}
+		\caption{Features of OpenGL and Vulkan comparison}
 		\label{fig:comparison_opengl_vulkan}
 	\end{center}
 \end{figure}
 \begin{figure}[t]
 	\begin{center}
 		\includegraphics[scale=0.3]{ecosystem-vulkan}
-		\caption{Ecosistema Vulkan}
+		\caption{Vulkan Ecosystem}
 		\label{fig:vulkan_ecosystem}
 	\end{center}
 \end{figure}

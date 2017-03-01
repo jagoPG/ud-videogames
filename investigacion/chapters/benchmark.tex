@@ -21,10 +21,20 @@ sicronización...
     \midrule
     Doom 2016   & OpenGL  & 149 & 184 & 7   & 11.169 \\
     Doom 2016   & Vulkan  & 85  & 194 & 36  & 9.786 \\
-    Dota 2      & OpenGL  & 132 & 145 & 85  & 10.84 \\
-    Dota 2      & Vulkan  & 129 & 200 & 5   & 34.073 \\
+    Dota 2      & OpenGL  & 137 & 200 & 6   & 33.17 \\
+    Dota 2      & Vulkan  & 122 & 200 & 9   & 30.719 \\
     \bottomrule
   \end{tabular}
   \caption{Resultados del benchmarking. Se miden \gls{fps}.}
   \label{tab:benchmarking_results}
 \end{table*}
+
+Durante las ejecuciones de las pruebas no se ha notado ningún tipo de problemas a la hora de jugar, es decir la
+experiencia de juego ha sido buena. A partir de los datos recogidos, se ha realizado la Tabla \ref{tab:benchmarkin_results}
+donde se puede observar que de media OpenGL logra tener una tasa de frames superior a Vulkan. Sin embargo, Vulkan logra
+mantener una mayor estabilidad de los frames. Ambas tecnologías tienen una media de frames superior a la que actualmente
+el mercado demanda - que son unos 60 FPS jugando a resolución 1920x1080.
+
+Hay que destacar que aún los drivers de Vulkan no tienen el recorrido de OpenGL, por lo que seguramente en el futuro
+los resultados sean mejores. Como conclusión de esta prueba creo que actualmente es una alternativa totalmente
+viable a OpenGL, al menos desde el punto de vista multimedia.
