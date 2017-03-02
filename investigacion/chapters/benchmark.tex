@@ -1,23 +1,23 @@
 \chapter{Benchmark}
-Dado que Vulkan tiende a ser el futuro reemplazo de OpenGL es necesario comparar si Vulkan ofrece una respuesta, como
-mínimo, equivalente a OpenGL. Para ello he realizado un benchmarking en dos juegos diferentes, una vez con cada
-tecnología. He ejecutado las mimas escenas para evitar que una de las \gls{api} tengan que soportar menor carga
-que la otra.
+As long as Vulkan approaches to be an OpenGL replacement, it is required to compare if Vulkan is able to offer
+a throughput greater than OpenGL - or at least similar. For this reason I have performed a benchmark with two different
+games. With each game I have played twice a round, one time with OpenGL and another time with Vulkan. I have played the
+same scenes with the two implementations of the technologies for avoid having less computing load with one of the
+technologies. The game screen resolution has been set up 1920x1080, with the highest graphic quality.
 
-Las especificaciones del ordenador con el que he hecho las pruebas son las siguientes: procesador Intel Core i7-4790,
-equipado con 16,0 GB DD3 de RAM a 1600 Mhz. y una tarjeta gráfica AMD Radeon R9 380 Series. He actualizado los drivers
-de AMD a la última versión para disfrutar de las últimas mejoras que se han realizado.
+The specifications of the computer I have done the tests with are the following: Intel Core i7-4790 processor, 16 GB
+of DDR3 RAM running at 1,600 MHz. and an AMD Radeon R9 380 series graphic card. I have updated the AMD drivers to the
+latest version for having the latest improvements.
 
-Se ha empleado el software \emph{PresentMon64} para realizar las mediciones, el cual está libremente disponible en
-el repositorio de GitHub \href{https://github.com/GameTechDev/PresentMon}{GameTechDev/PresentMon}. Con esta aplicación
-se puede medir el tiempo que tarda en pintar la pantalla, tiempo que tarda en renderizar cada frame, tiempo de
-sicronización...
+I have used the software \emph{PresentMon64} for getting the measurements, which is free for use in the GitHub
+repository \href{https://github.com/GameTechDev/PresentMon}{GameTechDev/PresentMon} at GitHub. This application can
+measure the times that takes to draw the frame, time that takes to render the frame, synchronization time...
 
 \begin{table*}[t]
   \centering
   \begin{tabular}{p{0.15\linewidth}p{0.15\linewidth}p{0.15\linewidth}p{0.15\linewidth}p{0.15\linewidth}p{0.15\linewidth}}
     \toprule
-    Juego & \gls{api}    & Media & Máximo & Mínimo & Desviación típica \\
+    Juego & \gls{api}    & Average & Maximum & Minimum & Standard Deviation \\
     \midrule
     Doom 2016   & OpenGL  & 149 & 184 & 7   & 11.169 \\
     Doom 2016   & Vulkan  & 85  & 194 & 36  & 9.786 \\
@@ -25,16 +25,16 @@ sicronización...
     Dota 2      & Vulkan  & 122 & 200 & 9   & 30.719 \\
     \bottomrule
   \end{tabular}
-  \caption{Resultados del benchmarking. Se miden \gls{fps}.}
+  \caption{Bencharmk Results. Measured as \gls{fps}.}
   \label{tab:benchmarking_results}
 \end{table*}
 
-Durante las ejecuciones de las pruebas no se ha notado ningún tipo de problemas a la hora de jugar, es decir la
-experiencia de juego ha sido buena. A partir de los datos recogidos, se ha realizado la Tabla \ref{tab:benchmarkin_results}
-donde se puede observar que de media OpenGL logra tener una tasa de frames superior a Vulkan. Sin embargo, Vulkan logra
-mantener una mayor estabilidad de los frames. Ambas tecnologías tienen una media de frames superior a la que actualmente
-el mercado demanda - que son unos 60 FPS jugando a resolución 1920x1080.
+During the test I have not notice any problem when playing - that is the game experience has been excellent. Based
+on the collected data the Table \ref{tab:benchmarkin_results} has been constructed. As you can see, the average of
+OpenGL has been greater that Vulkan average. However, Vulkan has a greater frame stability as the standard deviation
+is lower than the OpenGL frame rate. Both technologies have a greater frame average than the frame rate the players
+currently demand - about 60 \gls{fps} playing with a resolution of 1920x1080.
 
-Hay que destacar que aún los drivers de Vulkan no tienen el recorrido de OpenGL, por lo que seguramente en el futuro
-los resultados sean mejores. Como conclusión de esta prueba creo que actualmente es una alternativa totalmente
-viable a OpenGL, al menos desde el punto de vista multimedia.
+It has to be taken into consideration that Vulkan drivers have not the same maturity level as OpenGL. In the future
+it is for sure that the Vulkan results will be improved. As conclusion of this test, I think that today Vulkan could
+be a good alternative to OpenGL, at least from the multimedia point of view.
