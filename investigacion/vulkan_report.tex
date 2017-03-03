@@ -9,11 +9,15 @@
 \usepackage{hyperref}
 \usepackage{makeidx}
 \usepackage[utf8]{inputenc}
+\usepackage{biblatex}
+
 \RequirePackage{graphicx}
 \RequirePackage{booktabs}
 
 \graphicspath{{images/}, {images/screenshots/}}
 \DeclareGraphicsExtensions{.png, .jpg, .jpeg, .pdf}
+\addbibresource{vulkan_report.bib}
+
 \makeglossaries
 \makeindex
 
@@ -33,4 +37,6 @@
     \include{./chapters/alternatives}
     \include{./chapters/conclusion}
     \printglossary
+
+    \include{./chapters/bibliography}
 \end{document}

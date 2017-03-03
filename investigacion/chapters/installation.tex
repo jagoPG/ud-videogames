@@ -1,14 +1,16 @@
 \chapter{A quick look}
 If this article has attracted your attention, I am going to propose you a way to take a closer look to the development
-kit of Vulkan. \href{https://github.com/LunarG/VulkanSamples}{LunarG/VulkanSamples} GitHub repository contains several
-executable examples using the LunarG implementation of Vulkan.
+kit of \emph{Vulkan}. \href{https://github.com/LunarG/VulkanSamples}{LunarG/VulkanSamples} GitHub repository contains
+several executable examples using the LunarG implementation of \emph{Vulkan}.
 
-In the first place it is required to prepare the tools for developing. Ensure that the graphic card supports Vulkan. In
-the table \ref{tab:vulkan_drivers} can be checked if your model of graphic card has drivers that provide support to
-Vulkan. Very few integrated cards of Intel cards support it, so make sure you are using a good graphic card. So if you
-find problems when compiling the source, the problem can be cause for a lack of support.
+In the first place it is required to prepare the tools for developing. Ensure that the graphic card supports
+\emph{Vulkan}. In the Table \ref{tab:vulkan_drivers} can be checked if your model of graphic card has drivers that
+provide support to \emph{Vulkan}. Very few integrated cards of \emph{Intel} cards support it, so make sure you are
+using a good graphic card. So if you find problems when compiling the source, the problem can be cause for a lack
+of support.
 
-Preparation of the development environment is different in Windows and GNU\/Linux, but generally the ingredients are:
+Preparation of the development environment is different in \emph{Windows} and \emph{GNU\/Linux}, but generally the
+ingredients are:
 \begin{enumerate}
     \item CMake: C/C++ compiler.
     \item Python 3.
@@ -16,13 +18,14 @@ Preparation of the development environment is different in Windows and GNU\/Linu
     \item Glslang: required for compiling compilar \gls{glsl} to SPIRV.
 \end{enumerate}
 
-Under Windows you have to install an \gls{ide}, which in this environment could be Visual Studio par excellence. Then,
-download and install the LunarG \gls{sdk} Vulkan implementation. After creating a new C++ project it is required to
-point out where the \gls{sdk} is, and add the library dependencies \emph{vulkan-1.lib} and \emph{glfw3.lib}.
+Under \emph{Windows} you have to install an \gls{ide}, which in this environment could be \emph{isual Studio} par
+excellence. Then, download and install the LunarG \gls{sdk} \emph{Vulkan} implementation. After creating a new C++
+project it is required to point out where the \gls{sdk} is, and add the library dependencies \emph{vulkan-1.lib} and
+\emph{glfw3.lib}.
 
-On the GNU\/Linux hand, download and install the LunarG \gls{sdk} Vulkan implementation. There is an executable file
-in the package that eases the installation tasks. It is required to install some libraries in addition to the
-previous dependencies:
+On the \emph{GNU\/Linux} hand, download and install the LunarG \gls{sdk} \emph{Vulkan} implementation. There is an
+executable file in the package that eases the installation tasks. It is required to install some libraries in addition
+to the previous dependencies:
 \begin{enumerate}
     \item libxcb1-dev: XCB library, employed for communicating with the \emph{X-Window} system.
     \item xorg-dev: Xorg development files.
@@ -39,13 +42,13 @@ compiled and executed, such as it is indicated in the \emph{README.md} file whic
   \centering
   \begin{tabular}{p{0.25\linewidth}p{0.25\linewidth}p{0.25\linewidth}}
     \toprule
-    Tarjeta gráfica & Windows    & GNU\/Linux \\
+    Tarjeta gráfica & \emph{Windows}    & \emph{GNU\/Linux} \\
     \midrule
     NVIDIA          & 368.69+                   & 367.27+ \\
     AMD             & Crimson Edition 16.3+     & Crimson Edition 16.3+ \\
     Intel           & 15.40.20.4404+            & Mesa 12.0+ \\
     \bottomrule
   \end{tabular}
-  \caption{Vulkan Drivers}
+  \caption{\emph{Vulkan} Drivers}
   \label{tab:vulkan_drivers}
 \end{table*}

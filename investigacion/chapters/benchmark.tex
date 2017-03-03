@@ -1,17 +1,19 @@
 \chapter{Benchmark}
-As long as Vulkan approaches to be an OpenGL replacement, it is required to compare if Vulkan is able to offer
-a throughput greater than OpenGL - or at least similar. For this reason I have performed a benchmark with two different
-games. With each game I have played twice a round, one time with OpenGL and another time with Vulkan. I have played the
-same scenes with the two implementations of the technologies for avoid having less computing load with one of the
-technologies. The game screen resolution has been set up 1920x1080, with the highest graphic quality.
+As long as \emph{Vulkan} approaches to be an \emph{OpenGL} replacement, it is required to compare if \emph{Vulkan} is
+able to offer
+a throughput greater than \emph{OpenGL} - or at least similar. For this reason I have performed a benchmark with two
+different games. With each game I have played twice a round, one time with \emph{OpenGL} and another time with
+\emph{Vulkan}. I have played the same scenes with the two implementations of the technologies for avoid having less
+computing load with one of the technologies. The game screen resolution has been set up \emph{1920x1080}, with the
+highest graphic quality.
 
-The specifications of the computer I have done the tests with are the following: Intel Core i7-4790 processor, 16 GB
-of DDR3 RAM running at 1,600 MHz. and an AMD Radeon R9 380 series graphic card. I have updated the AMD drivers to the
-latest version for having the latest improvements.
+The specifications of the computer I have done the tests with are the following: \emph{Intel Core i7-4790} processor,
+16 GB of DDR3 RAM running at 1,600 MHz. and an \emph{AMD Radeon R9 380 Series} graphic card. I have updated the
+\emph{AMD} drivers to the latest version for having the latest improvements.
 
-I have used the software \emph{PresentMon64} for getting the measurements, which is free for use in the GitHub
-repository \href{https://github.com/GameTechDev/PresentMon}{GameTechDev/PresentMon} at GitHub. This application can
-measure the times that takes to draw the frame, time that takes to render the frame, synchronization time...
+I have used the software \emph{PresentMon64} for getting the measurements, which is free for use in the \emph{GitHub}
+repository \href{https://github.com/GameTechDev/PresentMon}{GameTechDev/PresentMon} at \emph{GitHub}. This application
+can measure the times that takes to draw the frame, time that takes to render the frame, synchronization time...
 
 \begin{table*}[t]
   \centering
@@ -25,16 +27,16 @@ measure the times that takes to draw the frame, time that takes to render the fr
     Dota 2      & Vulkan  & 122 & 200 & 9   & 30.719 \\
     \bottomrule
   \end{tabular}
-  \caption{Bencharmk Results. Measured as \gls{fps}.}
+  \caption{Benchmark Results. Measured as \gls{fps}.}
   \label{tab:benchmark_results}
 \end{table*}
 
 During the test I have not notice any problem when playing - that is the game experience has been excellent. Based
 on the collected data the Table \ref{tab:benchmark_results} has been constructed. As you can see, the average of
-OpenGL has been greater that Vulkan average. However, Vulkan has a greater frame stability as the standard deviation
-is lower than the OpenGL frame rate. Both technologies have a greater frame average than the frame rate the players
-currently demand - about 60 \gls{fps} playing with a resolution of 1920x1080.
+OpenGL has been greater that \emph{Vulkan} average. However, \emph{Vulkan} has a greater frame stability as the
+standard deviation is lower than the \emph{OpenGL} frame rate. Both technologies have a greater frame average than the
+frame rate the players currently demand - about 60 \gls{fps} playing with a resolution of \emph{1920x1080}.
 
-It has to be taken into consideration that Vulkan drivers have not the same maturity level as OpenGL. In the future
-it is for sure that the Vulkan results will be improved. As conclusion of this test, I think that today Vulkan could
-be a good alternative to OpenGL, at least from the multimedia point of view.
+It has to be taken into consideration that \emph{Vulkan} drivers have not the same maturity level as \emph{OpenGL}. In
+the future it is for sure that the \emph{Vulkan} results will be improved. As conclusion of this test, I think that
+today \emph{Vulkan} could be a good alternative to \emph{OpenGL}, at least from the multimedia point of view.

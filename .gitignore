@@ -18,7 +18,10 @@ investigacion/**/*.log
 investigacion/**/*.out
 investigacion/**/*.pdf
 investigacion/**/*.synctex.gz
+investigacion/**/*.bbl
+investigacion/**/*.bcf
+investigacion/**/*.blg
+investigacion/**/*.run.xml
 
 # BENCHMARKING
 __pycache__
-

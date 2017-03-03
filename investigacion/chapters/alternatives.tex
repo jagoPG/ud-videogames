@@ -1,19 +1,19 @@
 \chapter{Alternatives}
-Even though I mentioned that there are several alternatives to Vulkan, I propose an overlook of some development
+Even though I mentioned that there are several alternatives to \emph{Vulkan}, I propose an overlook of some development
 kits that are widely used by the industry on different systems.
 
 \section{Metal}
 It is an \gls{api} that provides a high performance access to the \gls{gpu}. Allows a low level access to the hardware,
-which maximizes the graphical quality and the computation power for applications runnng under iOS, maxOS and tvOS. Metal
-owns a simplified \gls{api}, precompiled shaders and multithread support. It is focused for developers that want push
-to the limit the integrated graphic cards in the Apple mobile devices.
+which maximizes the graphical quality and the computation power for applications runnng under \emph{iOS}, \emph{macOS}
+and \emph{tvOS}. \emph{Metal} owns a simplified \gls{api}, precompiled shaders and multithread support. It is focused
+for developers that want push to the limit the integrated graphic cards in \emph{Apple} mobile devices.
 
-Released on 2015 as an alternative to OpenGL. Seeks a more direct access to the hardware of the devices - the same
-objective as Vulkan. Being closer to the \emph{metal} of the machine the resource consumption and access is reduced.
-Some of the new features includes a better synchronization between the \gls{gpu} and the \gls{cpu} for reducing the
-amount of data the \gls{cpu} has to provide to the \gls{gpu}: the logic behind is that the each time the graphic card
-needs to draw a scene, the \gls{cpu} has to send the commands explicitly. By means of the resource sharing, the graphic
-card can access to the data with no need of intermediary.
+Released on 2015 as an alternative to \emph{OpenGL}. Seeks a more direct access to the hardware of the devices - the
+same objective as \emph{Vulkan}. Being closer to the \emph{metal} of the machine the resource consumption and access
+is reduced. Some of the new features includes a better synchronization between the \gls{gpu} and the \gls{cpu} for
+reducing the amount of data the \gls{cpu} has to provide to the \gls{gpu}: the logic behind is that the each time the
+graphic card needs to draw a scene, the \gls{cpu} has to send the commands explicitly. By means of the resource
+sharing, the graphic card can access to the data with no need of intermediary.
 
 \section{OpenGL}
 Standard specification that defines a multilanguage and multiplatfrom \gls{api}. The initial release was performed
@@ -21,33 +21,34 @@ in 1992. Introduced as a solution to the graphical problems existing at early 80
 programmers for writing specific drivers for each kind of hardware. Many times these kind of solutions were not the
 most optimal, without considering the financial implications.
 
-During mid-90s, the multimedia industry tried to unify two most relevant technologies: Microsoft's Direct3D and
-OpenGL. The objective was to create an industry graphical libraries standard. Because of a lack of funding and
-supporting the project failed two years after the proposal.
+During mid-90s, the multimedia industry tried to unify two most relevant technologies: \emph{Microsoft}'s
+\emph{Direct3D} and \emph{OpenGL}. The objective was to create an industry graphical libraries standard. Because of a
+lack of funding and supporting the project failed two years after the proposal.
 
-OpenGL is available to anyone, but it is not Open Source since the source code is not available. This \gls{api} is
-an open specification that describes the interface the programmer uses and expected behavior. The implementation
-that is Open Source is called \emph{Mesa3D}. It is a good start point for the programmers that want to introduce
-themselves to the graphical libraries world. Nowadays OpenGL does not have a huge relevance in desktop environments,
-a few companies uses this standard as a first option for developing. This specification is very used for the creation
-of graphical engines, simulators and mobile devices applications.
+\emph{OpenGL} is available to anyone, but it is not Open Source since the source code is not available. This
+\gls{api} is an open specification that describes the interface the programmer uses and expected behavior. The
+implementation that is Open Source is called \emph{Mesa3D}. It is a good start point for the programmers that want to
+introduce themselves to the graphical libraries world. Nowadays \emph{OpenGL} does not have a huge relevance in
+desktop environments, a few companies uses this standard as a first option for developing. This specification is very
+used for the creation of graphical engines, simulators and mobile devices applications.
 
 \section{DirectX}
 Made up by a collection of \gls{api}s developed for ease the task related with multimedia, videos and - above all -
 videogames. Consists of different libraries for drawing in 2D, 3D, input device processing, network communications,
 audio playing and recording...
 
-It is only available in Microsoft's platforms, such as Windows or Xbox. However, it is being developed an
-Open Source implementation for Unix systems - this project is called WineHQ.
+It is only available in Microsoft's platforms, such as \emph{Windows} or \emph{Xbox}. However, it is being developed an
+Open Source implementation for \emph{Unix} systems - this project is called \emph{WineHQ}.
 
-The initial release was at ending 1995s. In the past, games were executed directly under DOS system, where no
+The initial release was at ending 1995s. In the past, games were executed directly under \emph{DOS} system, where no
 specific \gls{api} was employed for multimedia development. During those years, the market demand of multimedia
-applications was going greater and greater, and there is no native solutions. The first version of DirectX - also
-called Direct3D - was integrated into Windows 95, as a substitute of \gls{dci} and WinG Windows 3.1 \gls{api}.
+applications was going greater and greater, and there is no native solutions. The first version of \emph{DirectX} - also
+called \emph{Direct3D} - was integrated into \emph{Windows 95}, as a substitute of \gls{dci} and \emph{WinG Windows 3.1}
+\gls{api}.
 
-Direct3D is focused in game development. During many years the \gls{api} implementation has been increased, and many
-optimizations have been included. When the Xbox consoles were put on sale a specific \gls{api} was created for the
-consoles - same happened with the mobile system Windows Phone. Microsoft still supports to OpenGL inside their desktop
-systems. This is because applications like CAD and simulators consumes that \gls{api}. For taking advantage of
-OpenGL features, Microsoft has created a half-support between DirectX and OpenGL. They offer to developers different
-choices upon implementing their solutions.
+\emph{Direct3D} is focused in game development. During many years the \gls{api} implementation has been increased, and
+many optimizations have been included. When the \emph{Xbox} consoles were put on sale a specific \gls{api} was created
+for the consoles - same happened with the mobile system\emph{ Windows Phone}. \emph{Microsoft} still supports to
+\emph{OpenGL} inside their desktop systems. This is because applications like \gls{cad} and simulators consumes that
+\gls{api}. For taking advantage of \emph{OpenGL} features, \emph{Microsoft} has created a half-support between
+\emph{DirectX} and \emph{OpenGL}. They offer to developers different choices upon implementing their solutions.
