@@ -1,15 +1,12 @@
-# =============== #
-# Unity generated #
-# =============== #
+# Unity generated
 Temp/
 Obj/
 UnityGenerated/
 Library/
 Assets/AssetStoreTools*
 
-# ===================================== #
-# Visual Studio / MonoDevelop generated #
-# ===================================== #
+# Visual Studio / MonoDevelop generated
+
 ExportedObj/
 *.svd
 *.userprefs
@@ -20,3 +17,37 @@ ExportedObj/
 *.user
 *.unityproj
 *.booproj
+
+# INVESTIGATION PROJECT
+investigacion/**/*.toc
+investigacion/**/*.aux
+investigacion/**/*.fdb_latexmk
+investigacion/**/*.fls
+investigacion/**/*.glg
+investigacion/**/*.glo
+investigacion/**/*.gls
+investigacion/**/*.glsdefs
+investigacion/**/*.idx
+investigacion/**/*.ilg
+investigacion/**/*.ind
+investigacion/**/*.ist
+investigacion/**/*.log
+investigacion/**/*.out
+investigacion/**/*.pdf
+investigacion/**/*.synctex.gz
+investigacion/**/*.bbl
+investigacion/**/*.bcf
+investigacion/**/*.blg
+investigacion/**/*.run.xml
+
+# BENCHMARKING
+__pycache__
+
+# OS FILES
+.DS_Store
+
+# PYCHARM
+.idea/
+
+# PYTHON FILES
+*.pyc

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<chapters>
+    <chapter
+            uid="1"
+            title="El inicio..."
+            order="1">
+        <quest
+            uid="1"
+            title="El secuestro"
+            description="Persigue a la criatura que se ha llevado a Lucy"
+            order="1"/>
+        <quest
+            uid="2"
+            title="Investiga en el pueblo"
+            description="Pregunta en el pueblo qué sabe la gente sobre las extrañas criaturas"
+            order="2"
+            depends="1"/>
+        <quest
+            uid="3"
+            title="Buscando pistas"
+            description="Sigue las huellas e investiga hacia dónde han podido ir las criaturas"
+            order="3"
+            depends="1"/>
+        <quest
+            uid="4"
+            title="Una inesperada aparición"
+            description="Investiga al extraño hombre"
+            order="4"
+            depends="2,3"/>
+        <quest
+            uid="5"
+            title="Por el camino"
+            description="Atraviesa el bosque de Elmwood junto con el Dr. Van Helsing"
+            order="5"
+            depends="4"/>
+    </chapter>
+</chapters>

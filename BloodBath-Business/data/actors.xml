@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<chapters>
+    <chapter
+        uid="1"
+        order="1">
+        <actor uid="1" name="aldeano">
+            <conversation quest_id="1">
+                <not-available>
+                    <phrase>¡Ayuda! El pueblo entero está siendo atacado.</phrase>
+                </not-available>
+                <available>
+                    <phrase>Están por todas partes, es imposible escapar.</phrase>
+                </available>
+                <active>
+                    <phrase></phrase>
+                </active>
+                <completed>
+                    <phrase>Gracias por la ayuda. Sin tí habríamos muerto.</phrase>
+                </completed>
+            </conversation>
+        </actor>
+    </chapter>
+</chapters>
