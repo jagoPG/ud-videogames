@@ -1,27 +1,22 @@
-# OS FILES
-.DS_Store
+# =============== #
+# Unity generated #
+# =============== #
+Temp/
+Obj/
+UnityGenerated/
+Library/
+Assets/AssetStoreTools*
 
-# INVESTIGATION PROJECT
-investigacion/**/*.toc
-investigacion/**/*.aux
-investigacion/**/*.fdb_latexmk
-investigacion/**/*.fls
-investigacion/**/*.glg
-investigacion/**/*.glo
-investigacion/**/*.gls
-investigacion/**/*.glsdefs
-investigacion/**/*.idx
-investigacion/**/*.ilg
-investigacion/**/*.ind
-investigacion/**/*.ist
-investigacion/**/*.log
-investigacion/**/*.out
-investigacion/**/*.pdf
-investigacion/**/*.synctex.gz
-investigacion/**/*.bbl
-investigacion/**/*.bcf
-investigacion/**/*.blg
-investigacion/**/*.run.xml
-
-# BENCHMARKING
-__pycache__
+# ===================================== #
+# Visual Studio / MonoDevelop generated #
+# ===================================== #
+ExportedObj/
+*.svd
+*.userprefs
+*.csproj
+*.pidb
+*.suo
+*.sln
+*.user
+*.unityproj
+*.booproj
