@@ -17,13 +17,15 @@ public class Decoration : MonoBehaviour
 	void OnTriggerEnter2D(Collider2D collider)
 	{
 		if (collider.tag == "Player" && !collider.isTrigger) {
+			print ("ENTER");
 			collider.attachedRigidbody.gameObject.GetComponent<SpriteRenderer>().sortingLayerName = "Player Hidded";
 		}
 	}
 
 	void OnTriggerExit2D(Collider2D collider)
 	{
-		if (collider.tag == "Player") {
+		if (collider.tag == "Player" && !collider.isTrigger) {
+			print ("EXIT");
 			collider.attachedRigidbody.gameObject.GetComponent<SpriteRenderer> ().sortingLayerName = "Player";
 		}
 	}
