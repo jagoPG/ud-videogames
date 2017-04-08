@@ -5,6 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(PolygonCollider2D))]
+[RequireComponent(typeof(SpriteRenderer))]
 public class Player : MonoBehaviour
 {
 
@@ -13,6 +14,7 @@ public class Player : MonoBehaviour
 	private Rigidbody2D RigidBody;
 	private Animator Anim;
 	private BoxCollider2D BoxCollider;
+	private SpriteRenderer Sprite;
 
 	public float Speed = 2;
 
@@ -26,6 +28,7 @@ public class Player : MonoBehaviour
 		Anim = GetComponent<Animator> ();
 		RigidBody = GetComponent<Rigidbody2D> ();
 		BoxCollider = GetComponent<BoxCollider2D> ();
+		Sprite = GetComponent<SpriteRenderer> ();
 	}
 
 	void Start ()
@@ -51,8 +54,31 @@ public class Player : MonoBehaviour
 		} else {
 			this.canBeShown = false;
 		}
+
+		CheckDecorationOnTriggerEnter (collider);
 	}
 
+	void OnTriggerExit2D(Collider2D collider)
+	{
+		CheckDecorationOnTriggerExit (collider);
+	}
+
+	/* Check Decoration Triggers */
+	void CheckDecorationOnTriggerEnter(Collider2D collider)
+	{
+		if (collider.tag == "Decoration" && collider.isTrigger) {
+			Sprite.sortingLayerName = "Player Hidded";
+		}
+	}
+
+	void CheckDecorationOnTriggerExit(Collider2D collider)
+	{
+		if (collider.tag == "Decoration" && collider.isTrigger) {
+			Sprite.sortingLayerName = "Player";
+		}
+	}
+
+	/* Check movement */
 	void CheckInput()
 	{
 		var HorizontalInput = Input.GetAxisRaw ("Horizontal");
@@ -61,13 +87,13 @@ public class Player : MonoBehaviour
 		DeltaForce = new Vector2 (HorizontalInput, VerticalInput);
 		CalculateMovement (DeltaForce * Speed);
 	}
-
+		
 	void CalculateMovement(Vector2 PlayerForce)
 	{
 		RigidBody.velocity = Vector2.zero;
 		RigidBody.AddForce (PlayerForce, ForceMode2D.Impulse);
 	}
-
+		
 	void MakeAnimationTransition()
 	{
 		if (Input.GetKey (KeyCode.W)) {
