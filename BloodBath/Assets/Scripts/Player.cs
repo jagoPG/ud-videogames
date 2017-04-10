@@ -51,8 +51,6 @@ public class Player : MonoBehaviour
 	void OnTriggerEnter2D(Collider2D collider) {
 		if (collider.tag == "Passive Character") {
 			this.canBeShown = true;
-		} else {
-			this.canBeShown = false;
 		}
 
 		CheckDecorationOnTriggerEnter (collider);
@@ -60,6 +58,9 @@ public class Player : MonoBehaviour
 
 	void OnTriggerExit2D(Collider2D collider)
 	{
+		if (collider.tag == "Passive Character") {
+			this.canBeShown = false;
+		}
 		CheckDecorationOnTriggerExit (collider);
 	}
 
