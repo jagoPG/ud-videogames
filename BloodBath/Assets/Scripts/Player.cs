@@ -19,7 +19,6 @@ public class Player : MonoBehaviour
 	public float Speed = 2;
 
 	// Conversation menu
-	public GameObject ConversationPanel;
 	private bool canBeShown = false;
 	private bool isConversationActive = false;
 
@@ -33,7 +32,7 @@ public class Player : MonoBehaviour
 
 	void Start ()
 	{
-		ConversationPanel.SetActive (false);
+		TextManager.HideText ();
 		RigidBody.gravityScale = 0;
 		RigidBody.constraints = RigidbodyConstraints2D.FreezeRotation;
 	}
@@ -116,12 +115,12 @@ public class Player : MonoBehaviour
 		
 	void ManageConversation()
 	{
-		if (isConversationActive) {
-			// !TODO manage conversation progress
-
-			ConversationPanel.SetActive(isConversationActive = false);
+		if (!isConversationActive) {
+			isConversationActive = true;
+			TextManager.ShowText ();
 		} else {
-			ConversationPanel.SetActive (isConversationActive = true);
+			isConversationActive = false;
+			TextManager.HideText ();
 		}
 	}
 }
