@@ -8,7 +8,6 @@ using UnityEngine;
 [RequireComponent(typeof(SpriteRenderer))]
 public class Player : MonoBehaviour
 {
-
 	[SerializeField]
 	private Vector2 DeltaForce;
 	private Rigidbody2D RigidBody;
