@@ -9,12 +9,12 @@ public class Conversation : ScriptableObject
 	public int questUid;
 	public ConversationStatus[] conversations;
 
-	public string GetPhrases(Quest.QuestStatus status)
+	public ConversationStatus GetPhrases(Quest.QuestStatus status)
 	{
 		if (conversations != null) {
 			for (int i = 0; i < conversations.Length; i++) {
 				if (conversations[i].questStatus == status) {
-					return conversations[i].content;
+					return conversations[i];
 				}
 			}
 		}

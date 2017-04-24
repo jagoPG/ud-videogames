@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEditor;
 
-[CustomEditor(typeof(ConversationStatus))]
+//[CustomEditor(typeof(ConversationStatus))]
 public class ConversationStatusEditor : Editor {
 
 	private ConversationStatus conversationStatus;

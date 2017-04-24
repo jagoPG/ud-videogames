@@ -5,7 +5,7 @@ using UnityEngine;
 [CreateAssetMenu]
 public class TalkCharacterReaction : Reaction {
 	public Character character;
-	private string phrase;
+	private ConversationStatus phrase;
 
 	protected override void SpecificInit()
 	{
@@ -24,7 +24,7 @@ public class TalkCharacterReaction : Reaction {
 	protected override void ImmediateReaction()
 	{
 		if (character != null && phrase != null) {
-			TextManager.getInstance().SetText (phrase, 3);
+			TextManager.getInstance().SetText (phrase.content, phrase.delay);
 		}
 	}
 }

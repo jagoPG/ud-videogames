@@ -46,7 +46,7 @@ public class QuestManager : MonoBehaviour
 		}
 	}
 
-	public string GetLatestCharacterConversation(Character character)
+	public ConversationStatus GetLatestCharacterConversation(Character character)
 	{
 		int length = finishedQuests.Capacity;
 		bool isFound = false;
