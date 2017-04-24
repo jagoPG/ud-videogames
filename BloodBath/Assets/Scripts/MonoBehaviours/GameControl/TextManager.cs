@@ -4,34 +4,62 @@ using UnityEngine;
 
 public class TextManager : MonoBehaviour {
 
+	public struct TextInstruction {
+		public float startTime;
+		public string text;
+	};
+
+	// Singleton instance
 	private static TextManager instance;
+	private Queue<TextInstruction> queue;
+	private UnityEngine.UI.Text textLabel;
+	private float clearTime;
+	TextInstruction currentText;
+
 	public GameObject conversationText;
 
-	void Awake ()
+	public static TextManager getInstance()
+	{
+		return instance;
+	}
+
+	private void Awake ()
 	{
 		if (instance == null) {
 			DontDestroyOnLoad (gameObject);
 			instance = this;
+			queue = new Queue <TextInstruction>();
+			conversationText.SetActive (false);
+			textLabel = instance.conversationText.GetComponentInChildren<UnityEngine.UI.Text> ();
 		} if (instance != this) {
 			Destroy (gameObject);
 		}
 	}
 
-	public static void SetText(string text)
+	private void Update()
 	{
-		GUIText textLabel = instance.conversationText.GetComponentInChildren<GUIText>();	
-		textLabel.text = text;
+		float currentTime = Time.time;
+
+		if (queue.Count > 0 && currentTime >= currentText.startTime) {
+			currentText = queue.Dequeue ();
+			textLabel.text = currentText.text;
+			conversationText.SetActive(true);
+		} else if (currentTime >= clearTime) {
+			textLabel.text= string.Empty;
+			conversationText.SetActive(false);
+		}
 	}
 
-	public static void ShowText()
+	public void SetText(string text, float delay)
 	{
-		print ("REACH SHOW");
-		instance.conversationText.SetActive (true);
-	}
+		float startTime = Time.time;
+		clearTime = startTime + delay;
 
-	public static void HideText()
-	{
-		print ("REACH HIDE");
-		instance.conversationText.SetActive (false);
+		TextInstruction textInstruction = new TextInstruction {
+			startTime = startTime,
+			text = text,
+		};
+
+		this.queue.Enqueue (textInstruction);
 	}
 }
