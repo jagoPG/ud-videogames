@@ -5,9 +5,19 @@ using UnityEngine;
 public class Inventory : MonoBehaviour
 {
 	public static int maxSize = 10;
+	private static Inventory instance;
 
-	public GUIText[] names = new GUIText[maxSize];
+	public UnityEngine.UI.Text[] names = new UnityEngine.UI.Text[maxSize];
 	public Item[] items = new Item[maxSize];
+
+	public GameObject propietary;
+	public GameObject sampleText;
+	public GameObject inventoryPanel;
+
+	public void Start()
+	{
+		PopulateList ();
+	}
 
 	public bool AddItem(Item item)
 	{
@@ -35,5 +45,15 @@ public class Inventory : MonoBehaviour
 		}
 
 		return false;
+	}
+
+	public void PopulateList()
+	{
+		foreach (var item in items) {
+			GameObject newText = Instantiate (this.sampleText) as GameObject;
+			UnityEngine.UI.Text sampleText = newText.GetComponent<UnityEngine.UI.Text> ();
+			sampleText.text = item.name;
+			newText.transform.SetParent (inventoryPanel.transform);
+		}
 	}
 }

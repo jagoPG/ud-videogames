@@ -14,14 +14,17 @@ public class PlayerMovement : MonoBehaviour
 	private Animator Anim;
 	private BoxCollider2D BoxCollider;
 	private SpriteRenderer Sprite;
+	private PolygonCollider2D verticalCollider;
+	private BoxCollider2D horizontalCollider;
 
 	public float Speed = 2;
 
 	// Conversation menu
-	private bool canBeShown = false;
+	private bool canBeShown;
+	private static int itemsInFront;
 
 	// Interaction
-	Interactable currentInteractable = null;
+	Interactable currentInteractable;
 
 	void Awake()
 	{
@@ -29,10 +32,15 @@ public class PlayerMovement : MonoBehaviour
 		RigidBody = GetComponent<Rigidbody2D> ();
 		BoxCollider = GetComponent<BoxCollider2D> ();
 		Sprite = GetComponent<SpriteRenderer> ();
+		verticalCollider = GetComponent<PolygonCollider2D> ();
+		horizontalCollider = GetComponentInChildren<BoxCollider2D> ();
 	}
 
 	void Start ()
 	{
+		print ("REACH");
+		itemsInFront = 0;
+		canBeShown = false;
 		RigidBody.gravityScale = 0;
 		RigidBody.constraints = RigidbodyConstraints2D.FreezeRotation;
 	}
@@ -62,7 +70,7 @@ public class PlayerMovement : MonoBehaviour
 		print ("Player exited collider: " + collider.tag);
 
 		if (collider.tag == "Passive Character") {
-			this.canBeShown = false;
+			currentInteractable = null;
 		}
 		CheckDecorationOnTriggerExit (collider);
 	}
@@ -71,6 +79,7 @@ public class PlayerMovement : MonoBehaviour
 	void CheckDecorationOnTriggerEnter(Collider2D collider)
 	{
 		if (collider.tag == "Decoration" && collider.isTrigger) {
+			itemsInFront = itemsInFront + 1;
 			Sprite.sortingLayerName = "Player Hidded";
 		}
 	}
@@ -78,7 +87,10 @@ public class PlayerMovement : MonoBehaviour
 	void CheckDecorationOnTriggerExit(Collider2D collider)
 	{
 		if (collider.tag == "Decoration" && collider.isTrigger) {
-			Sprite.sortingLayerName = "Player";
+			itemsInFront = itemsInFront - 1;
+			if (itemsInFront == 0) {
+				Sprite.sortingLayerName = "Player";
+			}
 		}
 	}
 
@@ -103,17 +115,33 @@ public class PlayerMovement : MonoBehaviour
 		if (Input.GetKey (KeyCode.W)) {
 			Anim.SetInteger ("key", 1);
 			Anim.SetBool ("hold", true);
+			DisableHorizontalCollider ();
 		} else if (Input.GetKey (KeyCode.S)) {
 			Anim.SetInteger ("key", 2);
 			Anim.SetBool ("hold", true);
+			DisableHorizontalCollider ();
 		} else if (Input.GetKey (KeyCode.A)) {
 			Anim.SetInteger ("key", 3);
 			Anim.SetBool ("hold", true);
+			EnableHorizontalCollider ();
 		} else if (Input.GetKey (KeyCode.D)) {
 			Anim.SetInteger ("key", 4);
 			Anim.SetBool ("hold", true);
+			EnableHorizontalCollider ();
 		} else {
 			Anim.SetBool ("hold", false);
 		}
+	}
+
+	private void EnableHorizontalCollider()
+	{
+		this.horizontalCollider.enabled = true;
+		this.verticalCollider.enabled = false;
+	}
+
+	private void DisableHorizontalCollider()
+	{
+		this.horizontalCollider.enabled = false;
+		this.verticalCollider.enabled = true;
 	}
 }

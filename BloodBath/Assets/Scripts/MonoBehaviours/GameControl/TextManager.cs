@@ -1,12 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TextManager : MonoBehaviour {
 
 	public struct TextInstruction {
 		public float startTime;
 		public string text;
+		public Sprite image;
 	};
 
 	// Singleton instance
@@ -17,6 +19,7 @@ public class TextManager : MonoBehaviour {
 	TextInstruction currentText;
 
 	public GameObject conversationText;
+	public Image conversationImage;
 
 	public static TextManager getInstance()
 	{
@@ -30,7 +33,7 @@ public class TextManager : MonoBehaviour {
 			instance = this;
 			queue = new Queue <TextInstruction>();
 			conversationText.SetActive (false);
-			textLabel = instance.conversationText.GetComponentInChildren<UnityEngine.UI.Text> ();
+			textLabel = instance.conversationText.GetComponentInChildren<Text> ();
 		} if (instance != this) {
 			Destroy (gameObject);
 		}
@@ -44,13 +47,15 @@ public class TextManager : MonoBehaviour {
 			currentText = queue.Dequeue ();
 			textLabel.text = currentText.text;
 			conversationText.SetActive(true);
+			conversationImage.sprite = currentText.image;
 		} else if (currentTime >= clearTime) {
 			textLabel.text= string.Empty;
+			conversationImage.sprite = null;
 			conversationText.SetActive(false);
 		}
 	}
 
-	public void SetText(string text, float delay)
+	public void SetText(string text, float delay, Sprite image)
 	{
 		float startTime = Time.time;
 		clearTime = startTime + delay;
@@ -58,6 +63,7 @@ public class TextManager : MonoBehaviour {
 		TextInstruction textInstruction = new TextInstruction {
 			startTime = startTime,
 			text = text,
+			image = image
 		};
 
 		this.queue.Enqueue (textInstruction);
