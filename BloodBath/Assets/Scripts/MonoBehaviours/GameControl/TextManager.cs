@@ -21,7 +21,7 @@ public class TextManager : MonoBehaviour {
 	public GameObject conversationText;
 	public Image conversationImage;
 
-	public static TextManager getInstance()
+	public static TextManager GetInstance()
 	{
 		return instance;
 	}
@@ -48,6 +48,12 @@ public class TextManager : MonoBehaviour {
 			textLabel.text = currentText.text;
 			conversationText.SetActive(true);
 			conversationImage.sprite = currentText.image;
+
+			if (currentText.image == null) {
+				conversationImage.enabled = false;
+			} else {
+				conversationImage.enabled = true;
+			}
 		} else if (currentTime >= clearTime) {
 			textLabel.text= string.Empty;
 			conversationImage.sprite = null;

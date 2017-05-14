@@ -19,14 +19,16 @@ public class PlayerMovement : MonoBehaviour
 
 	public float Speed = 2;
 
-	// Conversation menu
-	private bool canBeShown;
+	// Popup menu
+	private bool isMenuShowed;
+
+	// Number of items in front of the character
 	private static int itemsInFront;
 
 	// Interaction
 	Interactable currentInteractable;
 
-	void Awake()
+	private void Awake()
 	{
 		Anim = GetComponent<Animator> ();
 		RigidBody = GetComponent<Rigidbody2D> ();
@@ -36,56 +38,55 @@ public class PlayerMovement : MonoBehaviour
 		horizontalCollider = GetComponentInChildren<BoxCollider2D> ();
 	}
 
-	void Start ()
+	private void Start ()
 	{
-		print ("REACH");
 		itemsInFront = 0;
-		canBeShown = false;
+		this.isMenuShowed = false;
 		RigidBody.gravityScale = 0;
 		RigidBody.constraints = RigidbodyConstraints2D.FreezeRotation;
 	}
 
-	void Update ()
+	private void Update ()
 	{
 		if (currentInteractable != null && Input.GetKeyDown (KeyCode.E)) {
+			Debug.Log("Interact with object");
 			currentInteractable.Interact ();
 		}
 
-		CheckInput ();
-		MakeAnimationTransition ();
+		// Enable inventory
+		if (Input.GetKeyDown (KeyCode.I)) {
+			if (this.isMenuShowed) {
+				this.isMenuShowed = false;
+				Inventory.GetInstance ().HideInventory ();
+			} else {
+				this.isMenuShowed = true;
+				Inventory.GetInstance ().ShowInventory ();
+			}
+		}
+
+		// Animation transition
+		if (!this.isMenuShowed) {
+			CheckInput ();
+			MakeAnimationTransition ();
+		}
 	}
 
-	void OnTriggerEnter2D(Collider2D collider) {
-		print ("Player entered collider: " + collider.tag);
-
+	private void OnTriggerEnter2D(Collider2D collider) {
 		if (collider.tag == "Passive Character" || collider.tag == "Item") {
+			Debug.Log ("Set interactable");
 			currentInteractable = collider.GetComponent<Interactable> ();
 		}
-
-		CheckDecorationOnTriggerEnter (collider);
-	}
-
-	void OnTriggerExit2D(Collider2D collider)
-	{
-		print ("Player exited collider: " + collider.tag);
-
-		if (collider.tag == "Passive Character") {
-			currentInteractable = null;
-		}
-		CheckDecorationOnTriggerExit (collider);
-	}
-
-	/* Check Decoration Triggers */
-	void CheckDecorationOnTriggerEnter(Collider2D collider)
-	{
 		if (collider.tag == "Decoration" && collider.isTrigger) {
 			itemsInFront = itemsInFront + 1;
 			Sprite.sortingLayerName = "Player Hidded";
 		}
 	}
 
-	void CheckDecorationOnTriggerExit(Collider2D collider)
+	private void OnTriggerExit2D(Collider2D collider)
 	{
+		if (collider.tag == "Passive Character") {
+			currentInteractable = null;
+		}
 		if (collider.tag == "Decoration" && collider.isTrigger) {
 			itemsInFront = itemsInFront - 1;
 			if (itemsInFront == 0) {
@@ -93,9 +94,11 @@ public class PlayerMovement : MonoBehaviour
 			}
 		}
 	}
-
-	/* Check movement */
-	void CheckInput()
+		
+	/**
+	 * Check movement 
+	 */
+	private void CheckInput()
 	{
 		var HorizontalInput = Input.GetAxisRaw ("Horizontal");
 		var VerticalInput = Input.GetAxisRaw ("Vertical");
@@ -104,13 +107,13 @@ public class PlayerMovement : MonoBehaviour
 		CalculateMovement (DeltaForce * Speed);
 	}
 		
-	void CalculateMovement(Vector2 PlayerForce)
+	private void CalculateMovement(Vector2 PlayerForce)
 	{
 		RigidBody.velocity = Vector2.zero;
 		RigidBody.AddForce (PlayerForce, ForceMode2D.Impulse);
 	}
 		
-	void MakeAnimationTransition()
+	private void MakeAnimationTransition()
 	{
 		if (Input.GetKey (KeyCode.W)) {
 			Anim.SetInteger ("key", 1);

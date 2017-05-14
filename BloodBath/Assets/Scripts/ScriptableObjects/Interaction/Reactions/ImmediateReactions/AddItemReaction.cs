@@ -4,15 +4,22 @@
 public class AddItemReaction : Reaction
 {
 	public Item item;
-	private Inventory inventory;
+	public bool isGrabbed;
 
 	protected override void SpecificInit()
 	{
-		this.inventory = FindObjectOfType<Inventory> ();
+		this.isGrabbed = false;
 	}
 
 	protected override void ImmediateReaction()
 	{
-		inventory.AddItem (item);
+		if (!isGrabbed) {
+			Debug.Log ("Añadir objeto: " + item.name);
+
+			this.isGrabbed = true;
+			Inventory.GetInstance().AddItem (item);
+
+			TextManager.GetInstance().SetText ("You have grabbed " + item.name, 3, null);
+		}
 	}
 }

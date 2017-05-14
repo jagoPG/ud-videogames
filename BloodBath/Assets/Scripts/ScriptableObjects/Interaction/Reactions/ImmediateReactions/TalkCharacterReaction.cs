@@ -24,7 +24,7 @@ public class TalkCharacterReaction : Reaction {
 	protected override void ImmediateReaction()
 	{
 		if (character != null && phrase != null) {
-			TextManager.getInstance().SetText (phrase.content, phrase.delay, character.image);
+			TextManager.GetInstance().SetText (phrase.content, phrase.delay, character.image);
 		}
 	}
 }
