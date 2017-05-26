@@ -64,6 +64,15 @@ public class PlayerMovement : MonoBehaviour
 			}
 		}
 
+		// Move in inventory
+		if (this.isMenuShowed) {
+			if (Input.GetKeyDown (KeyCode.UpArrow)) {
+				Inventory.GetInstance ().moveUp ();
+			} else if (Input.GetKeyUp (KeyCode.DownArrow)) {
+				Inventory.GetInstance ().moveDown ();
+			}
+		}
+
 		// Animation transition
 		if (!this.isMenuShowed) {
 			CheckInput ();

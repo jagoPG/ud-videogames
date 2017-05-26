@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 
 [CreateAssetMenu]
+[System.Serializable]
 public class Item : ScriptableObject 
 {
 	public int uid;

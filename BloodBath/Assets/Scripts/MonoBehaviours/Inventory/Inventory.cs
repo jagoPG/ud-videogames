@@ -11,8 +11,15 @@ public class Inventory : MonoBehaviour
 	public Text[] names = new Text[maxSize];
 	public Item[] items = new Item[maxSize];
 
-	public GameObject sampleText;
 	public GameObject inventoryPanel;
+	public GameObject inventoryDescription;
+	public GameObject inventoryItemsWrapper;
+	public Image inventoryImage;
+
+	private int selectedIndex;
+	private int amountOfItems = 0;
+	private Text[] labels;
+	private Text description;
 
 	public static Inventory GetInstance()
 	{
@@ -21,8 +28,13 @@ public class Inventory : MonoBehaviour
 
 	public void ShowInventory()
 	{
+		description = inventoryDescription.GetComponentInChildren<Text> ();
+		labels = inventoryItemsWrapper.GetComponentsInChildren<Text> ();
+
+		this.selectedIndex = 0;
 		this.PopulateList ();
 		inventoryPanel.SetActive (true);
+		this.UpdateSelectedItem ();
 	}
 
 	public void HideInventory()
@@ -30,12 +42,60 @@ public class Inventory : MonoBehaviour
 		inventoryPanel.SetActive (false);
 	}
 
+	private void UpdateSelectedItem()
+	{
+		Item item = items [selectedIndex];
+
+		if (item == null) {
+			inventoryImage.enabled = false;
+			inventoryDescription.SetActive (false);
+
+			return;
+		} 
+
+		Text label = labels [selectedIndex];
+		label.color = new Color(255, 165, 0);
+
+		if (item != null) {
+			description.text = item.description;
+			inventoryDescription.SetActive (true);
+
+			if (item.sprite == null) {
+				inventoryImage.enabled = false;
+			} else {
+				inventoryImage.sprite = item.sprite;
+				inventoryImage.enabled = true;
+			}
+		}
+	}
+
+	public void moveUp()
+	{
+		if (selectedIndex != 0) {
+			labels [selectedIndex].color = Color.white;
+			selectedIndex--;
+		}
+
+		UpdateSelectedItem ();
+	}
+
+	public void moveDown()
+	{
+		if (selectedIndex < labels.Length && selectedIndex < amountOfItems) {
+			labels [selectedIndex].color = Color.white;
+			selectedIndex++;
+		}
+
+		UpdateSelectedItem ();
+	}
+
 	public bool AddItem(Item item)
 	{
 		for (int i = 0; i < maxSize; i++) {
 			if (items [i] == null) {
 				items [i] = item;
-			
+				amountOfItems++;
+
 				return true;
 			}
 		}
@@ -49,6 +109,7 @@ public class Inventory : MonoBehaviour
 			if (item == items [i]) {
 				items [i] = null;
 				names [i] = null;
+				amountOfItems--;
 
 				return true;
 			}
@@ -65,16 +126,16 @@ public class Inventory : MonoBehaviour
 
 	protected void PopulateList()
 	{
-		Debug.Log ("Populate item list");
-
-		foreach (var item in items) {
+		for (var index = 0; index < labels.Length; index++) {
+			Text child = (Text) labels[index];
+			child.text = "";
+			child.color = Color.white;
+		}
+		for (var index = 0; index < items.Length; index++) {
+			Item item = items [index];
 			if (item != null) {
-				Debug.Log ("Show item: " + item.name);
-
-				GameObject newText = Instantiate (this.sampleText) as GameObject;
-				Text sampleText = newText.GetComponent<Text> ();
-				sampleText.text = item.name;
-				newText.transform.SetParent (inventoryPanel.transform);
+				Text label = labels[index];
+				label.text = item.name;
 			}
 		}
 	}
@@ -86,6 +147,7 @@ public class Inventory : MonoBehaviour
 
 			instance = this;
 			DontDestroyOnLoad (this);
+			inventoryPanel.SetActive (false);
 		} else if (instance != this) {
 			Destroy (gameObject);
 		}
