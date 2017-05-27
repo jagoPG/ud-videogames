@@ -12,7 +12,6 @@ public class PlayerMovement : MonoBehaviour
 	private Vector2 DeltaForce;
 	private Rigidbody2D RigidBody;
 	private Animator Anim;
-	private BoxCollider2D BoxCollider;
 	private SpriteRenderer Sprite;
 	private PolygonCollider2D verticalCollider;
 	private BoxCollider2D horizontalCollider;
@@ -27,12 +26,12 @@ public class PlayerMovement : MonoBehaviour
 
 	// Interaction
 	Interactable currentInteractable;
+	Collider2D interactableGameObject;
 
 	private void Awake()
 	{
 		Anim = GetComponent<Animator> ();
 		RigidBody = GetComponent<Rigidbody2D> ();
-		BoxCollider = GetComponent<BoxCollider2D> ();
 		Sprite = GetComponent<SpriteRenderer> ();
 		verticalCollider = GetComponent<PolygonCollider2D> ();
 		horizontalCollider = GetComponentInChildren<BoxCollider2D> ();
@@ -51,6 +50,15 @@ public class PlayerMovement : MonoBehaviour
 		if (currentInteractable != null && Input.GetKeyDown (KeyCode.E)) {
 			Debug.Log("Interact with object");
 			currentInteractable.Interact ();
+
+			if (interactableGameObject != null) {
+				Debug.Log ("interactableGameObject: " + interactableGameObject.tag);
+				if (interactableGameObject.tag == "Chest") {
+					Debug.Log ("Chest interaction");
+					Animator animator = interactableGameObject.GetComponentInParent<Animator> ();
+					animator.SetBool ("isOpened", true);
+				}
+			}
 		}
 
 		// Enable inventory
@@ -81,9 +89,10 @@ public class PlayerMovement : MonoBehaviour
 	}
 
 	private void OnTriggerEnter2D(Collider2D collider) {
-		if (collider.tag == "Passive Character" || collider.tag == "Item") {
+		if (collider.tag == "Passive Character" || collider.tag == "Item" || collider.tag == "Chest") {
 			Debug.Log ("Set interactable");
 			currentInteractable = collider.GetComponent<Interactable> ();
+			interactableGameObject = collider;
 		}
 		if (collider.tag == "Decoration" && collider.isTrigger) {
 			itemsInFront = itemsInFront + 1;

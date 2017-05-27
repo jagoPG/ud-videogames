@@ -28,9 +28,6 @@ public class Inventory : MonoBehaviour
 
 	public void ShowInventory()
 	{
-		description = inventoryDescription.GetComponentInChildren<Text> ();
-		labels = inventoryItemsWrapper.GetComponentsInChildren<Text> ();
-
 		this.selectedIndex = 0;
 		this.PopulateList ();
 		inventoryPanel.SetActive (true);
@@ -148,6 +145,8 @@ public class Inventory : MonoBehaviour
 			instance = this;
 			DontDestroyOnLoad (this);
 			inventoryPanel.SetActive (false);
+			description = inventoryDescription.GetComponentInChildren<Text> ();
+			labels = inventoryItemsWrapper.GetComponentsInChildren<Text> ();
 		} else if (instance != this) {
 			Destroy (gameObject);
 		}
