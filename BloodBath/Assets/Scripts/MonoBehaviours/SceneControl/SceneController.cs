@@ -14,5 +14,7 @@ public class SceneController : MonoBehaviour
 		yield return null;
 		Scene newScene = SceneManager.GetSceneByName (startingSceneName);
 		SceneManager.SetActiveScene (newScene);
+
+		AllConditions.GetInstance ().Reset ();
 	}
 }

@@ -9,12 +9,15 @@ using UnityEngine.SceneManagement;
 public class PlayerMovement : MonoBehaviour
 {
 	[SerializeField]
+	private Transform transform;
 	private Vector2 DeltaForce;
 	private Rigidbody2D RigidBody;
 	private Animator Anim;
 	private SpriteRenderer Sprite;
 	private PolygonCollider2D verticalCollider;
 	private BoxCollider2D horizontalCollider;
+
+	private static PlayerMovement instance;
 
 	public float Speed = 2;
 
@@ -28,13 +31,29 @@ public class PlayerMovement : MonoBehaviour
 	Interactable currentInteractable;
 	Collider2D interactableGameObject;
 
+
+	public static PlayerMovement getInstance()
+	{
+		return instance;	
+	}
+
+	public void MovePlayer(float x, float y) {
+		Vector2 newPosition = new Vector2 ();
+		newPosition.Set(x, y);
+		verticalCollider.attachedRigidbody.position = newPosition;
+	}
+
 	private void Awake()
 	{
-		Anim = GetComponent<Animator> ();
-		RigidBody = GetComponent<Rigidbody2D> ();
-		Sprite = GetComponent<SpriteRenderer> ();
-		verticalCollider = GetComponent<PolygonCollider2D> ();
-		horizontalCollider = GetComponentInChildren<BoxCollider2D> ();
+		if (instance == null) {
+			instance = this;
+			transform = GetComponent<Transform> ();
+			Anim = GetComponent<Animator> ();
+			RigidBody = GetComponent<Rigidbody2D> ();
+			Sprite = GetComponent<SpriteRenderer> ();
+			verticalCollider = GetComponent<PolygonCollider2D> ();
+			horizontalCollider = GetComponentInChildren<BoxCollider2D> ();
+		}
 	}
 
 	private void Start ()
@@ -48,13 +67,10 @@ public class PlayerMovement : MonoBehaviour
 	private void Update ()
 	{
 		if (currentInteractable != null && Input.GetKeyDown (KeyCode.E)) {
-			Debug.Log("Interact with object");
 			currentInteractable.Interact ();
 
 			if (interactableGameObject != null) {
-				Debug.Log ("interactableGameObject: " + interactableGameObject.tag);
 				if (interactableGameObject.tag == "Chest") {
-					Debug.Log ("Chest interaction");
 					Animator animator = interactableGameObject.GetComponentInParent<Animator> ();
 					animator.SetBool ("isOpened", true);
 				}
@@ -97,6 +113,9 @@ public class PlayerMovement : MonoBehaviour
 		if (collider.tag == "Decoration" && collider.isTrigger) {
 			itemsInFront = itemsInFront + 1;
 			Sprite.sortingLayerName = "Player Hidded";
+		}
+		if (collider.tag == "Entrance") {
+			collider.GetComponent<Interactable> ().Interact();
 		}
 	}
 

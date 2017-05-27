@@ -11,8 +11,11 @@ public class ConditionCollection : ScriptableObject
 
 	public bool Check()
 	{
+		Debug.Log ("Check conditions");
 		for (int i = 0; i < requiredConditions.Length; i++) {
-			if (!requiredConditions [i]) {
+			if (!requiredConditions [i].isSatisfied) {
+				Debug.Log ("False condition");
+
 				return false;
 			}
 		}
@@ -20,6 +23,7 @@ public class ConditionCollection : ScriptableObject
 		if (reactions) {
 			reactions.React ();
 		}
+		Debug.Log ("True condition");
 
 		return true;
 	}

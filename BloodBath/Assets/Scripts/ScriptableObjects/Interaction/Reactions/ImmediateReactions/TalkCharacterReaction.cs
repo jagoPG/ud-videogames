@@ -4,6 +4,7 @@ using UnityEngine;
 
 [CreateAssetMenu]
 public class TalkCharacterReaction : Reaction {
+
 	public Character character;
 	private ConversationStatus phrase;
 

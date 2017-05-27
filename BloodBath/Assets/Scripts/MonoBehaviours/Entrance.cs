@@ -7,16 +7,7 @@ public class Entrance : MonoBehaviour {
 	public float xOffset;
 	public float yOffset;
 	public GameObject destiny;
-
-	void Start ()
-	{
-		
-	}
-
-	void Update ()
-	{
-		
-	}
+	public ConditionCollection conditions;
 
 	void OnTriggerEnter2D(Collider2D collider) {
 		if (collider.tag == "Player") {
