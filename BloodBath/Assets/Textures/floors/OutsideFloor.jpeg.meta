@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: daa2f28a39dab47058f5224b63dca311
-timeCreated: 1495880431
+timeCreated: 1496082114
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -880,9 +880,9 @@ TextureImporter:
       name: OutsideFloor_57
       rect:
         serializedVersion: 2
-        x: 395
+        x: 400
         y: 288
-        width: 42
+        width: 32
         height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}

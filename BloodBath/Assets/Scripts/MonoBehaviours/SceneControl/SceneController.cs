@@ -15,6 +15,6 @@ public class SceneController : MonoBehaviour
 		Scene newScene = SceneManager.GetSceneByName (startingSceneName);
 		SceneManager.SetActiveScene (newScene);
 
-		AllConditions.GetInstance ().Reset ();
+		AllConditions.INSTANCE.Reset ();
 	}
 }

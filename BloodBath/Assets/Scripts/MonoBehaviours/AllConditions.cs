@@ -5,23 +5,27 @@ using UnityEngine;
 public class AllConditions : ScriptableObject {
 
 	public Condition[] allConditions;
-	private static AllConditions instance;
+	public static AllConditions INSTANCE {
+		get {
+			return INSTANCE;
+		}
+
+		set {
+			INSTANCE = value;
+		}
+	}
 
 	private void Awake()
 	{
-		if (instance == null) {
-			instance = this;
-			DontDestroyOnLoad (instance);
+		if (INSTANCE == null) {
+			INSTANCE = this;
+			DontDestroyOnLoad (INSTANCE);
 			allConditions = FindObjectsOfType<Condition> ();
 		} else {
 			Destroy (this);
 		}
 	}
 
-	public static AllConditions GetInstance()
-	{
-		return instance;
-	}
 
 	public void Reset()
 	{
