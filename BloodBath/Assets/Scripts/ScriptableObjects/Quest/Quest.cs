@@ -5,7 +5,7 @@ using UnityEngine;
 [CreateAssetMenu]
 public class Quest : ScriptableObject {
 
-	public enum QuestStatus { NOT_AVAILABLE, COMPLETED, AVAILABLE, ACTIVE };
+	public enum QuestStatus { COMPLETED, ACTIVE };
 
 	public int uid;
 	public string title;
@@ -18,11 +18,6 @@ public class Quest : ScriptableObject {
 	public void finishQuest()
 	{
 		this.status = QuestStatus.COMPLETED;
-	}
-
-	public void makeAvailableQuest()
-	{
-		this.status = QuestStatus.AVAILABLE;
 	}
 
 	public void startQuest()

@@ -7,7 +7,6 @@ public class ConditionCollection : ScriptableObject
 {
 	public string description;
 	public Condition[] requiredConditions = new Condition[0];
-	public ReactionCollection reactions;
 
 	public bool Check()
 	{
@@ -18,10 +17,6 @@ public class ConditionCollection : ScriptableObject
 
 				return false;
 			}
-		}
-
-		if (reactions) {
-			reactions.React ();
 		}
 		Debug.Log ("True condition");
 

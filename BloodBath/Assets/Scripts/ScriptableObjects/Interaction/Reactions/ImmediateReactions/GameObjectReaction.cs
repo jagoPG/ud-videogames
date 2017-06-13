@@ -3,11 +3,14 @@
 [CreateAssetMenu]
 public class GameObjectReaction : Reaction
 {
-	public GameObject gameObject;
+	public string name;
 	public bool actionState;
 
 	protected override void ImmediateReaction ()
 	{
-		gameObject.SetActive (actionState);
+		Debug.Log ("Game Object Reaction. Set Active?: " + actionState);
+
+		GameObject obj = GameObject.Find (name);
+		obj.SetActive (actionState);
 	}
 }

@@ -11,6 +11,8 @@ public class Conversation : ScriptableObject
 
 	public ConversationStatus GetPhrases(Quest.QuestStatus status)
 	{
+		Debug.Log ("Status: " + status);
+
 		if (conversations != null) {
 			for (int i = 0; i < conversations.Length; i++) {
 				if (conversations[i].questStatus == status) {
