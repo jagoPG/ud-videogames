@@ -88,9 +88,7 @@ public class TextManager : MonoBehaviour {
 	}
 
 	private void RetrieveFirstPhrase(float currentTime)
-	{
-		Debug.Log ("Retrieve First Phrase");
-		
+	{		
 		this.currentText = queue.Dequeue ();
 		DisplayPhrase (currentTime);
 	}

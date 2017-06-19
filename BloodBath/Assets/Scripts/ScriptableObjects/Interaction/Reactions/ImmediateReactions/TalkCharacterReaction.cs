@@ -10,20 +10,24 @@ public class TalkCharacterReaction : Reaction {
 
 	protected override void SpecificInit()
 	{
+		
+	}
+
+	protected override void ImmediateReaction()
+	{
 		Quest quest = QuestManager.GetInstance ().GetCurrentActiveQuest ();
 
 		if (quest != null && character != null) {
+			Debug.Log ("[TalkCharacterReaction] Get conversation of uid " + quest.uid);
 			Conversation conversation = character.GetConversationOfQuestUid (quest.uid);
-			if (conversation) {
+
+			if (conversation != null) {
 				phrase = conversation.GetPhrases (Quest.QuestStatus.ACTIVE);
 			} else {
 				phrase = QuestManager.GetInstance ().GetLatestCharacterConversation (character);
 			}
 		}
-	}
 
-	protected override void ImmediateReaction()
-	{
 		if (character != null && phrase != null) {
 			TextManager.GetInstance().SetText (phrase.content, phrase.delay, character.image);
 		}

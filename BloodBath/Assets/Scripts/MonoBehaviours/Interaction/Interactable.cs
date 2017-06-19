@@ -5,8 +5,7 @@ public class Interactable : MonoBehaviour
 	public Transform interactionLocation;
 	public ConditionCollection[] conditionCollections = new ConditionCollection[0];
 	public ReactionCollection defaultReactionCollection;
-	public Reaction conditionNotAccomplished;
-
+	public ReactionCollection conditionNotAccomplished;
 
 	public void Interact ()
 	{
@@ -15,7 +14,7 @@ public class Interactable : MonoBehaviour
 			if (!conditionCollections [i].Check ()) {
 				Debug.Log ("Reaction not launched");
 				if (conditionNotAccomplished != null) {
-					conditionNotAccomplished.React (this);
+					conditionNotAccomplished.React ();
 				}
 
 				return;

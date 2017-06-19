@@ -43,7 +43,19 @@ public class QuestManager : MonoBehaviour
 			Quest quest = quests.GetQuestOfUid (uid);
 			quest.finishQuest ();
 			finishedQuests.Add (quest);
+			ActivateNextQuest ();
 		}
+	}
+
+	public ConversationStatus GetCurrentQuestCharacterConversation(Character character)
+	{
+		Conversation current = character.GetConversationOfQuestUid (uidOfActiveQuest);
+
+		if (current != null) {
+			return current.GetPhrases (Quest.QuestStatus.ACTIVE);
+		}
+
+		return null;
 	}
 
 	public ConversationStatus GetLatestCharacterConversation(Character character)
@@ -54,7 +66,8 @@ public class QuestManager : MonoBehaviour
 		Conversation[] characterConversations = character.conversations;
 		Conversation conversation = null;
 
-		for (int i = length; i >= 0 && !isFound; i--) {
+		// Check other conversations
+		for (int i = 0; i < length && !isFound; i++) {
 			Quest current = finishedQuests [i];
 
 			for (int j = 0; j < characterConversations.Length && !isFound; j++) {
@@ -70,5 +83,15 @@ public class QuestManager : MonoBehaviour
 		}
 			
 		return null;
+	}
+
+	public void MakeQuestProgression(int uid)
+	{
+		this.uidOfActiveQuest = uid;
+	}
+
+	private void ActivateNextQuest ()
+	{
+		this.uidOfActiveQuest += 1;
 	}
 }
