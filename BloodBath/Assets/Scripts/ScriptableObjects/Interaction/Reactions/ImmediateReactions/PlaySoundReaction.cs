@@ -6,7 +6,6 @@ using UnityEngine;
 public class PlaySoundReaction : Reaction {
 
 	public AudioClip open;
-	public AudioSource audio;
 
 	protected override void SpecificInit()
 	{
@@ -16,9 +15,6 @@ public class PlaySoundReaction : Reaction {
 	{
 		Debug.Log ("Play sound reaction");
 
-		Debug.Log ("Sound length: " + open.length);
-		audio.clip = open;
-		audio.enabled = true;
-		audio.Play ();
+		SoundManager.GetInstance ().PlaySound (open);
 	}
 }

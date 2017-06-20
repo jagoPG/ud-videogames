@@ -16,9 +16,7 @@ public class FadeController : MonoBehaviour {
 		if (FadeController.instance == null) {
 			FadeController.instance = this;
 			GameObject fadeLayer = GameObject.FindGameObjectWithTag ("BlackBg");
-			Debug.Log (fadeLayer == null);
 			sprite = fadeLayer.GetComponent<SpriteRenderer> ();
-			Debug.Log (sprite.color.a);
 		} else {
 			Destroy (this);
 		}
