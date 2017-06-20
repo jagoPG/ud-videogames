@@ -20,6 +20,7 @@ public class PlayerMovement : MonoBehaviour
 	private static PlayerMovement instance;
 
 	public float Speed = 2;
+	private bool isPlayerFreezed;
 
 	// Popup menu
 	private bool isMenuShowed;
@@ -41,6 +42,28 @@ public class PlayerMovement : MonoBehaviour
 		Vector2 newPosition = new Vector2 ();
 		newPosition.Set(x, y);
 		verticalCollider.attachedRigidbody.position = newPosition;
+	}
+
+	public void FreezePlayer()
+	{
+		Anim.SetBool ("hold", false);
+		RigidBody.velocity = Vector2.zero;
+		this.isPlayerFreezed = true;
+	}
+
+	public void UnfreezePlayer()
+	{
+		this.isPlayerFreezed = false;
+	}
+
+	public void LookRight()
+	{
+		Anim.SetInteger ("key", 4);
+	}
+
+	public void LookLeft()
+	{
+		Anim.SetInteger ("key", 3);
 	}
 
 	private void Awake()
@@ -66,41 +89,43 @@ public class PlayerMovement : MonoBehaviour
 
 	private void Update ()
 	{
-		if (currentInteractable != null && Input.GetKeyDown (KeyCode.E)) {
-			currentInteractable.Interact ();
+		if (!isPlayerFreezed) {
+			if (currentInteractable != null && Input.GetKeyDown (KeyCode.E)) {
+				currentInteractable.Interact ();
 
-			if (interactableGameObject != null) {
-				if (interactableGameObject.tag == "Chest") {
-					Animator animator = interactableGameObject.GetComponentInParent<Animator> ();
-					animator.SetBool ("isOpened", true);
+				if (interactableGameObject != null) {
+					if (interactableGameObject.tag == "Chest") {
+						Animator animator = interactableGameObject.GetComponentInParent<Animator> ();
+						animator.SetBool ("isOpened", true);
+					}
 				}
 			}
-		}
 
-		// Enable inventory
-		if (Input.GetKeyDown (KeyCode.I)) {
+			// Enable inventory
+			if (Input.GetKeyDown (KeyCode.I)) {
+				if (this.isMenuShowed) {
+					this.isMenuShowed = false;
+					Inventory.GetInstance ().HideInventory ();
+				} else {
+					this.isMenuShowed = true;
+					Inventory.GetInstance ().ShowInventory ();
+				}
+			}
+
+			// Move in inventory
 			if (this.isMenuShowed) {
-				this.isMenuShowed = false;
-				Inventory.GetInstance ().HideInventory ();
-			} else {
-				this.isMenuShowed = true;
-				Inventory.GetInstance ().ShowInventory ();
+				if (Input.GetKeyDown (KeyCode.UpArrow)) {
+					Inventory.GetInstance ().moveUp ();
+				} else if (Input.GetKeyUp (KeyCode.DownArrow)) {
+					Inventory.GetInstance ().moveDown ();
+				}
 			}
-		}
 
-		// Move in inventory
-		if (this.isMenuShowed) {
-			if (Input.GetKeyDown (KeyCode.UpArrow)) {
-				Inventory.GetInstance ().moveUp ();
-			} else if (Input.GetKeyUp (KeyCode.DownArrow)) {
-				Inventory.GetInstance ().moveDown ();
+			// Animation transition
+			if (!this.isMenuShowed) {
+				CheckInput ();
+				MakeAnimationTransition ();
 			}
-		}
-
-		// Animation transition
-		if (!this.isMenuShowed) {
-			CheckInput ();
-			MakeAnimationTransition ();
 		}
 	}
 
@@ -115,6 +140,9 @@ public class PlayerMovement : MonoBehaviour
 		}
 		if (collider.tag == "Entrance") {
 			collider.GetComponent<Interactable> ().Interact();
+		}
+		if (collider.tag == "FadeLayer") {
+			collider.GetComponent<Interactable> ().Interact ();
 		}
 	}
 
