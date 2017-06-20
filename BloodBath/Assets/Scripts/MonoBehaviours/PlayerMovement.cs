@@ -106,7 +106,6 @@ public class PlayerMovement : MonoBehaviour
 
 	private void OnTriggerEnter2D(Collider2D collider) {
 		if (collider.tag == "Passive Character" || collider.tag == "Item" || collider.tag == "Chest" || collider.tag == "Dynamic Obstacle") {
-			Debug.Log ("Set interactable");
 			currentInteractable = collider.GetComponent<Interactable> ();
 			interactableGameObject = collider;
 		}

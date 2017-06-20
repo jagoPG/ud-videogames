@@ -21,7 +21,7 @@ public class AddItemReaction : Reaction
 			// Add item
 			this.isGrabbed = true;
 			Inventory.GetInstance().AddItem (item);
-			TextManager.GetInstance ().SetText ("You have grabbed " + item.name, 3, null);
+			TextManager.GetInstance ().SetText ("Has cogido " + item.name, 3, null);
 
 			// Play sound if it is set
 			if (null != audio) {
